@@ -6,15 +6,15 @@ source script/env.sh
 
 cd $EXTERNAL_LIBS_BUILD_ROOT
 
-url="https://github.com/m2049r/monero"
-version="release-v0.13.0-monerujo"
+url="https://github.com/pyrex-coin/Pyrex.git"
+version="release-v0.12.3-ledger"
 
-if [ ! -d "monero" ]; then
+if [ ! -d "Pyrex" ]; then
   git clone ${url} -b ${version}
-  cd monero
+  cd Pyrex
   git submodule update --recursive --init
 else
-  cd monero
+  cd Pyrex
   git checkout ${version}
   git submodule update --recursive --init
 fi
