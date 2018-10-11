@@ -16,5 +16,6 @@ if [ ! -d "Pyrex" ]; then
 else
   cd Pyrex
   git checkout ${version}
+  git pull
   git submodule update --recursive --init
 fi
