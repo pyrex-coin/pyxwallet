@@ -6,8 +6,8 @@ source script/env.sh
 
 cd $EXTERNAL_LIBS_BUILD_ROOT
 
-version=1_58_0
-dot_version=1.58.0
+version=1_62_0
+dot_version=1.62.0
 
 if [ ! -f "boost_${version}.tar.gz" ]; then
   wget https://downloads.sourceforge.net/project/boost/boost/${dot_version}/boost_${version}.tar.gz
