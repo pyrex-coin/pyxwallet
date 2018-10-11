@@ -7,7 +7,7 @@ source script/env.sh
 cd $EXTERNAL_LIBS_BUILD_ROOT
 
 url="https://github.com/pyrex-coin/Pyrex.git"
-version="release-v0.12.3-ledger"
+version="release-v0.13-pyxwallet"
 
 if [ ! -d "Pyrex" ]; then
   git clone ${url} -b ${version}
