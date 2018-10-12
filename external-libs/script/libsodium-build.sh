@@ -10,8 +10,7 @@ if [ ! -f "configure" ]; then
   ./autogen.sh
 fi
 
-#archs=(arm arm64 x86 x86_64)
-archs=(x86 x86_64)
+archs=(arm arm64 x86 x86_64)
 for arch in ${archs[@]}; do
     case ${arch} in
         "arm")
