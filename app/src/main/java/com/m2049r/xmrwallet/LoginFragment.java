@@ -374,7 +374,7 @@ public class LoginFragment extends Fragment implements WalletInfoAdapter.OnInter
     private static final String PREF_DAEMON_MAINNET = "daemon_mainnet";
 
     private static final String PREF_DAEMONLIST_MAINNET =
-            "node.pyrexcoin.io";
+            "Pyrexcoin:PASS@35.221.117.136:6870";
 
     private static final String PREF_DAEMONLIST_STAGENET =
             "stagenode.pyrexcoin.io";
