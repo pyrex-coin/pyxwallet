@@ -9,7 +9,7 @@ PATH=$ANDROID_NDK_ROOT/build/tools/:$PATH
 
 args="--api 21 --stl=libc++"
 #archs=(arm arm64 x86 x86_64)
-archs=(x86_64)
+archs=(x86 x86_64)
 for arch in ${archs[@]}; do
     if [ ! -d "$NDK_TOOL_DIR/$arch" ]; then
         echo "installing $ANDROID_NDK_ROOT $arch $args"

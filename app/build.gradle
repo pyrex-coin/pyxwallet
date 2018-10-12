@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '28.0.2'
     defaultConfig {
-        applicationId "com.m2049r.xmrwallet"
+        applicationId "com.pyrexcoin.pyxwallet"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 132
@@ -49,7 +49,7 @@ android {
             enable true
             reset()
             //include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-            include 'x86_64'
+            include 'x86', 'x86_64'
             universalApk true
         }
     }

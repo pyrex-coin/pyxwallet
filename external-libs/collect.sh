@@ -8,7 +8,7 @@ orig_path=$PATH
 
 packages=(boost openssl Pyrex libsodium)
 #archs=(arm arm64 x86 x86_64)
-archs=(x86_64)
+archs=(x86 x86_64)
 for arch in ${archs[@]}; do
     case ${arch} in
         "arm")
