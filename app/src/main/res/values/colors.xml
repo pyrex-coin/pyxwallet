@@ -5,8 +5,8 @@
     <color name="tx_pending">@color/moneroFab</color>
     <color name="tx_failed">@color/moneroBlack</color>
 
-    <color name="gradientOrange">#FFFF6105</color>
-    <color name="gradientPink">#FFF0006B</color>
+    <color name="gradientOrange">#212121</color>
+    <color name="gradientPink">#484848</color>
 
     <color name="trafficGray">#9B9B9B</color>
 

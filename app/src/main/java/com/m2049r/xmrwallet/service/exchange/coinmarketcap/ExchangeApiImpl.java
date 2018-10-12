@@ -38,7 +38,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class ExchangeApiImpl implements ExchangeApi {
-    static final String CRYPTO_ID = "328";
+    static final String CRYPTO_ID = "3349";
 
     @NonNull
     private final OkHttpClient okHttpClient;
@@ -54,7 +54,7 @@ public class ExchangeApiImpl implements ExchangeApi {
     }
 
     public ExchangeApiImpl(@NonNull final OkHttpClient okHttpClient) {
-        this(okHttpClient, HttpUrl.parse("https://api.coinmarketcap.com/v2/ticker/"));
+        this(okHttpClient, HttpUrl.parse("https://api.coinmarketcap.com/v2/ticker/"+CRYPTO_ID+"/"));
     }
 
     @Override

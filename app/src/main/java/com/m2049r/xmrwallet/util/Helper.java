@@ -80,7 +80,7 @@ public class Helper {
             (BuildConfig.FLAVOR.equals("prod") ? "" : "." + BuildConfig.FLAVOR)
                     + (BuildConfig.DEBUG ? "-debug" : "");
 
-    static public final String CRYPTO = "XMR";
+    static public final String CRYPTO = "PYX";
 
     static private final String WALLET_DIR = "monerujo" + FLAVOR_SUFFIX;
     static private final String HOME_DIR = "monero" + FLAVOR_SUFFIX;

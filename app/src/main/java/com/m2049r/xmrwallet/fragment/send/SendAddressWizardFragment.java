@@ -259,7 +259,7 @@ public class SendAddressWizardFragment extends SendWizardFragment {
                         Helper.hideKeyboard(getActivity());
                     } else {
                         etAddress.setError(getString(R.string.send_address_not_openalias));
-                        Timber.d("NO XMR OPENALIAS TXT FOUND");
+                        Timber.d("NO PYX OPENALIAS TXT FOUND");
                     }
                 }
 

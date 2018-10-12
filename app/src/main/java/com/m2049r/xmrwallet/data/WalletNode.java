@@ -67,13 +67,13 @@ public class WalletNode {
         } else {
             switch (networkType) {
                 case NetworkType_Mainnet:
-                    port = 18081;
+                    port = 6870;
                     break;
                 case NetworkType_Testnet:
-                    port = 28081;
+                    port = 7870;
                     break;
                 case NetworkType_Stagenet:
-                    port = 38081;
+                    port = 8870;
                     break;
                 default:
                     port = 0;

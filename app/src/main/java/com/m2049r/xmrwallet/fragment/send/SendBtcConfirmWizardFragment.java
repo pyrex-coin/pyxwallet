@@ -444,7 +444,7 @@ public class SendBtcConfirmWizardFragment extends SendWizardFragment implements 
     void prepareSend() {
         if (!isResumed) return;
         if ((xmrtoStatus == null)) {
-            throw new IllegalStateException("xmrtoStatus is null");
+            throw new IllegalStateException("pyxtoStatus is null");
         }
         if ((!xmrtoStatus.isCreated())) {
             throw new IllegalStateException("order is not created");
