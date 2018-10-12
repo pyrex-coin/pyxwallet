@@ -9,7 +9,6 @@ cd $EXTERNAL_LIBS_BUILD_ROOT/libsodium
 if [ ! -f "configure" ]; then
   ./autogen.sh
 fi
-xCFLAGS="-fPIC"
 
 #archs=(arm arm64 x86 x86_64)
 archs=(x86_64)
@@ -43,11 +42,12 @@ for arch in ${archs[@]}; do
 
     PATH=$NDK_TOOL_DIR/$arch/$target_host/bin:$NDK_TOOL_DIR/$arch/bin:$PATH \
         CC=clang CXX=clang++; \
-        ./configure $xCFLAGS \
+        ./configure \
         --prefix=${TARGET_DIR} \
         --host=${target_host} \
         --enable-static \
         --disable-shared \
+        --disable-pie  \
         && make -j 4 \
         && make install \
         && make clean
