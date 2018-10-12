@@ -46,7 +46,6 @@ for arch in ${archs[@]}; do
         --prefix=${TARGET_DIR} \
         --host=${target_host} \
         --enable-static \
-        --disable-shared \
         --disable-pie  \
         && make -j 4 \
         && make install \
