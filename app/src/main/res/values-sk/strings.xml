@@ -350,7 +350,7 @@
     <string name="send_address_openalias">OpenAlias zabezpečený &#x2714;</string>
     <string name="send_address_resolve_openalias">Prekladám OpenAlias&#8230;</string>
     <string name="send_address_no_dnssec">OpenAlias bez DNSSEC - adresa môže byť zneužitá</string>
-    <string name="send_address_hint">Prijímateľova XMR/BTC Adresa alebo OpenAlias</string>
+    <string name="send_address_hint">Prijímateľova PYX Adresa alebo OpenAlias</string>
 
     <string name="status_wallet_connect_wrongversion">Node version incompatible - please upgrade!</string>
 </resources>

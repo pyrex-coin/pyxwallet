@@ -30,13 +30,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 
 import okhttp3.Call;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
+import timber.log.Timber;
 public class ExchangeApiImpl implements ExchangeApi {
     static final String CRYPTO_ID = "3349";
 
@@ -54,7 +55,7 @@ public class ExchangeApiImpl implements ExchangeApi {
     }
 
     public ExchangeApiImpl(@NonNull final OkHttpClient okHttpClient) {
-        this(okHttpClient, HttpUrl.parse("https://api.coinmarketcap.com/v2/ticker/"+CRYPTO_ID+"/"));
+        this(okHttpClient, HttpUrl.parse("https://api.coinmarketcap.com/v2/ticker/"));
     }
 
     @Override
@@ -90,10 +91,10 @@ public class ExchangeApiImpl implements ExchangeApi {
                 .addEncodedPathSegments(CRYPTO_ID + "/")
                 .addQueryParameter("convert", fiat)
                 .build();
-
         final Request httpRequest = createHttpRequest(url);
 
         okHttpClient.newCall(httpRequest).enqueue(new okhttp3.Callback() {
+            
             @Override
             public void onFailure(final Call call, final IOException ex) {
                 callback.onError(ex);
@@ -103,6 +104,7 @@ public class ExchangeApiImpl implements ExchangeApi {
             public void onResponse(final Call call, final Response response) throws IOException {
                 if (response.isSuccessful()) {
                     try {
+                        
                         final JSONObject json = new JSONObject(response.body().string());
                         final JSONObject metadata = json.getJSONObject("metadata");
                         if (!metadata.isNull("error")) {
@@ -134,6 +136,7 @@ public class ExchangeApiImpl implements ExchangeApi {
     }
 
     private Request createHttpRequest(final HttpUrl url) {
+        
         return new Request.Builder()
                 .url(url)
                 .get()

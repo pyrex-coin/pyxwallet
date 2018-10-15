@@ -254,7 +254,7 @@ public class ExchangeView extends LinearLayout
 
     }
 
-    final static double MAX_AMOUNT_XMR = 1000;
+    final static double MAX_AMOUNT_XMR = 20000;
     final static double MAX_AMOUNT_NOTXMR = 100000;
 
     public boolean checkEnteredAmount() {

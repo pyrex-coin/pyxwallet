@@ -224,6 +224,7 @@ public class ExchangeTextView extends LinearLayout
     public void doExchange() {
         tvAmountB.setText(null);
         // use cached exchange rate if we have it
+
         if (!isExchangeInProgress()) {
             String enteredCurrencyA = (String) sCurrencyA.getSelectedItem();
             String enteredCurrencyB = (String) sCurrencyB.getSelectedItem();

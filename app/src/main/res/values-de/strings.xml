@@ -342,7 +342,7 @@
     <string name="send_address_openalias">OpenAlias sicher &#x2714;</string>
     <string name="send_address_resolve_openalias">Löse OpenAlias auf&#8230;</string>
     <string name="send_address_no_dnssec">OpenAlias ohne DNSSEC - Adresse kann gefälscht sein!</string>
-    <string name="send_address_hint">Empfänger XMR/BTC Adresse oder OpenAlias</string>
+    <string name="send_address_hint">Empfänger PYX Adresse oder OpenAlias</string>
 
     <string name="progress_nfc_write">Schreibe Tag</string>
     <string name="nfc_write_failed">Schreiben des Tags fehlgeschlagen!</string>

@@ -391,7 +391,7 @@ public class ReceiveFragment extends Fragment {
             Timber.d("CLEARQR");
             return;
         }
-        bcData = new BarcodeData(BarcodeData.Asset.XMR, address, null, notes, xmrAmount);
+        bcData = new BarcodeData(BarcodeData.Asset.PYX, address, null, notes, xmrAmount);
         int size = Math.min(qrCode.getHeight(), qrCode.getWidth());
         Bitmap qr = generate(bcData.getUriString(), size, size);
         if (qr != null) {

@@ -29,6 +29,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import timber.log.Timber;
 
 class ExchangeRateImpl implements ExchangeRate {
 
@@ -64,7 +65,10 @@ class ExchangeRateImpl implements ExchangeRate {
     }
 
     ExchangeRateImpl(final JSONObject jsonObject, final boolean swapAssets) throws JSONException, ExchangeException {
+        Timber.d("DEEEEEBBBBBBBBBBBBBBBBBBBUUUUUUUUUUUUUUUUGGGGGGGGGGGGGGGGG "+jsonObject);
+
         try {
+
             final String baseC = jsonObject.getString("symbol");
             final JSONObject quotes = jsonObject.getJSONObject("quotes");
             final Iterator<String> keys = quotes.keys();

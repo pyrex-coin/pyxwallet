@@ -48,7 +48,7 @@ public class Notice {
         synchronized (Notice.class) {
             if (notices != null) return;
             notices = new ArrayList<>();
-            notices.add(
+            /*notices.add(
                     new Notice(NOTICE_SHOW_XMRTO_ENABLED_SEND,
                             R.string.info_xmrto_enabled,
                             R.string.help_xmrto,
@@ -59,19 +59,19 @@ public class Notice {
                             R.string.info_xmrto_enabled,
                             R.string.help_xmrto,
                             1)
-            );
+            );*/
             notices.add(
                     new Notice(NOTICE_SHOW_CRAZYPASS,
                             R.string.info_crazypass_enabled,
                             R.string.help_details,
                             2)
             );
-            notices.add(
+            /*notices.add(
                     new Notice(NOTICE_SHOW_LEDGER,
                             R.string.info_ledger_enabled,
                             R.string.help_create_ledger,
                             1)
-            );
+            );*/
         }
     }
 
