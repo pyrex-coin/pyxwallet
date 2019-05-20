@@ -39,12 +39,15 @@ import com.m2049r.xmrwallet.R;
 import com.m2049r.xmrwallet.data.BarcodeData;
 import com.m2049r.xmrwallet.data.TxData;
 import com.m2049r.xmrwallet.data.TxDataBtc;
+import com.m2049r.xmrwallet.data.UserNotes;
 import com.m2049r.xmrwallet.model.PendingTransaction;
 import com.m2049r.xmrwallet.model.Wallet;
 import com.m2049r.xmrwallet.util.BitcoinAddressValidator;
 import com.m2049r.xmrwallet.util.Helper;
 import com.m2049r.xmrwallet.util.OpenAliasHelper;
-import com.m2049r.xmrwallet.util.UserNotes;
+import com.m2049r.xmrwallet.util.PaymentProtocolHelper;
+import com.m2049r.xmrwallet.xmrto.XmrToError;
+import com.m2049r.xmrwallet.xmrto.XmrToException;
 
 import java.util.Map;
 
@@ -72,6 +75,8 @@ public class SendAddressWizardFragment extends SendWizardFragment {
 
         BarcodeData getBarcodeData();
 
+        BarcodeData popBarcodeData();
+
         void setMode(SendFragment.Mode mode);
 
         TxData getTxData();
@@ -89,6 +94,8 @@ public class SendAddressWizardFragment extends SendWizardFragment {
     private View llXmrTo;
 
     private boolean resolvingOA = false;
+    private boolean resolvingPP = false;
+    private String resolvedPP = null;
 
     OnScanListener onScanListener;
 
@@ -106,35 +113,61 @@ public class SendAddressWizardFragment extends SendWizardFragment {
         tvPaymentIdIntegrated = view.findViewById(R.id.tvPaymentIdIntegrated);
         llPaymentId = view.findViewById(R.id.llPaymentId);
         llXmrTo = view.findViewById(R.id.llXmrTo);
-        tvXmrTo = (TextView) view.findViewById(R.id.tvXmrTo);
+        tvXmrTo = view.findViewById(R.id.tvXmrTo);
         tvXmrTo.setText(Html.fromHtml(getString(R.string.info_xmrto)));
 
-        etAddress = (TextInputLayout) view.findViewById(R.id.etAddress);
+        etAddress = view.findViewById(R.id.etAddress);
         etAddress.getEditText().setRawInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         etAddress.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) && (event.getAction() == KeyEvent.ACTION_DOWN))
-                        || (actionId == EditorInfo.IME_ACTION_NEXT)) {
-                    String dnsOA = dnsFromOpenAlias(etAddress.getEditText().getText().toString());
+                // ignore ENTER
+                return ((event != null) && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER));
+            }
+        });
+        etAddress.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    View next = etAddress;
+                    String enteredAddress = etAddress.getEditText().getText().toString().trim();
+                    String dnsOA = dnsFromOpenAlias(enteredAddress);
                     Timber.d("OpenAlias is %s", dnsOA);
                     if (dnsOA != null) {
                         processOpenAlias(dnsOA);
-                    } else if (checkAddress()) {
-                        if (llPaymentId.getVisibility() == View.VISIBLE) {
-                            etPaymentId.requestFocus();
-                        } else {
-                            etDummy.requestFocus();
-                            Helper.hideKeyboard(getActivity());
+                        next = null;
+                    } else {
+                        // maybe a bip72 or 70 URI
+                        String bip70 = PaymentProtocolHelper.getBip70(enteredAddress);
+                        if (bip70 != null) {
+                            // looks good - resolve through xmr.to
+                            processBip70(bip70);
+                            next = null;
+                        } else if (checkAddress()) {
+                            if (llPaymentId.getVisibility() == View.VISIBLE) {
+                                next = etPaymentId;
+                            } else {
+                                next = etNotes;
+                            }
                         }
                     }
-                    return true;
+                    if (next != null) {
+                        final View focus = next;
+                        etAddress.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                focus.requestFocus();
+                            }
+                        });
+                    }
                 }
-                return false;
             }
         });
         etAddress.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable editable) {
+                Timber.d("AFTER: %s", editable.toString());
+                if (editable.toString().equals(resolvedPP)) return; // no change required
+                resolvedPP = null;
                 etAddress.setError(null);
                 if (isIntegratedAddress()) {
                     Timber.d("isIntegratedAddress");
@@ -142,16 +175,12 @@ public class SendAddressWizardFragment extends SendWizardFragment {
                     llPaymentId.setVisibility(View.INVISIBLE);
                     tvPaymentIdIntegrated.setVisibility(View.VISIBLE);
                     llXmrTo.setVisibility(View.INVISIBLE);
-                    sendListener.setMode(SendFragment.Mode.PYX);
-                } else if (isBitcoinAddress()) {
+                    sendListener.setMode(SendFragment.Mode.XMR);
+                } else if (isBitcoinAddress() || (resolvedPP != null)) {
                     Timber.d("isBitcoinAddress");
-                    etPaymentId.getEditText().getText().clear();
-                    llPaymentId.setVisibility(View.INVISIBLE);
-                    tvPaymentIdIntegrated.setVisibility(View.INVISIBLE);
-                    llXmrTo.setVisibility(View.VISIBLE);
-                    sendListener.setMode(SendFragment.Mode.BTC);
+                    setBtcMode();
                 } else {
-                    Timber.d("isStandardAddress");
+                    Timber.d("isStandardAddress or other");
                     llPaymentId.setVisibility(View.VISIBLE);
                     tvPaymentIdIntegrated.setVisibility(View.INVISIBLE);
                     llXmrTo.setVisibility(View.INVISIBLE);
@@ -168,7 +197,7 @@ public class SendAddressWizardFragment extends SendWizardFragment {
             }
         });
 
-        etPaymentId = (TextInputLayout) view.findViewById(R.id.etPaymentId);
+        etPaymentId = view.findViewById(R.id.etPaymentId);
         etPaymentId.getEditText().setRawInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         etPaymentId.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -197,7 +226,7 @@ public class SendAddressWizardFragment extends SendWizardFragment {
             }
         });
 
-        bPaymentId = (Button) view.findViewById(R.id.bPaymentId);
+        bPaymentId = view.findViewById(R.id.bPaymentId);
         bPaymentId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -205,7 +234,7 @@ public class SendAddressWizardFragment extends SendWizardFragment {
             }
         });
 
-        etNotes = (TextInputLayout) view.findViewById(R.id.etNotes);
+        etNotes = view.findViewById(R.id.etNotes);
         etNotes.getEditText().setRawInputType(InputType.TYPE_CLASS_TEXT);
         etNotes.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -219,7 +248,7 @@ public class SendAddressWizardFragment extends SendWizardFragment {
             }
         });
 
-        cvScan = (CardView) view.findViewById(R.id.bScan);
+        cvScan = view.findViewById(R.id.bScan);
         cvScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -227,8 +256,7 @@ public class SendAddressWizardFragment extends SendWizardFragment {
             }
         });
 
-
-        etDummy = (EditText) view.findViewById(R.id.etDummy);
+        etDummy = view.findViewById(R.id.etDummy);
         etDummy.setRawInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         etDummy.requestFocus();
         Helper.hideKeyboard(getActivity());
@@ -241,8 +269,18 @@ public class SendAddressWizardFragment extends SendWizardFragment {
         return view;
     }
 
+    private void setBtcMode() {
+        Timber.d("setBtcMode");
+        etPaymentId.getEditText().getText().clear();
+        llPaymentId.setVisibility(View.INVISIBLE);
+        tvPaymentIdIntegrated.setVisibility(View.INVISIBLE);
+        llXmrTo.setVisibility(View.VISIBLE);
+        sendListener.setMode(SendFragment.Mode.BTC);
+    }
+
     private void processOpenAlias(String dnsOA) {
         if (resolvingOA) return; // already resolving - just wait
+        sendListener.popBarcodeData();
         if (dnsOA != null) {
             resolvingOA = true;
             etAddress.setError(getString(R.string.send_address_resolve_openalias));
@@ -255,8 +293,6 @@ public class SendAddressWizardFragment extends SendWizardFragment {
                     if (barcodeData != null) {
                         Timber.d("Security=%s, %s", barcodeData.security.toString(), barcodeData.address);
                         processScannedData(barcodeData);
-                        etDummy.requestFocus();
-                        Helper.hideKeyboard(getActivity());
                     } else {
                         etAddress.setError(getString(R.string.send_address_not_openalias));
                         Timber.d("NO PYX OPENALIAS TXT FOUND");
@@ -273,10 +309,62 @@ public class SendAddressWizardFragment extends SendWizardFragment {
         } // else ignore
     }
 
+    private void processBip70(final String bip70) {
+        Timber.d("RESOLVED PP: %s", resolvedPP);
+        if (resolvingPP) return; // already resolving - just wait
+        resolvingPP = true;
+        sendListener.popBarcodeData();
+        etAddress.setError(getString(R.string.send_address_resolve_bip70));
+        PaymentProtocolHelper.resolve(bip70, new PaymentProtocolHelper.OnResolvedListener() {
+            @Override
+            public void onResolved(BarcodeData.Asset asset, String address, double amount, String resolvedBip70) {
+                resolvingPP = false;
+                if (asset != BarcodeData.Asset.BTC)
+                    throw new IllegalArgumentException("only BTC here");
+
+                if (resolvedBip70 == null)
+                    throw new IllegalArgumentException("success means we have a pp_url - else die");
+
+                final BarcodeData barcodeData =
+                        new BarcodeData(BarcodeData.Asset.BTC, address, null,
+                                resolvedBip70, null, null, String.valueOf(amount),
+                                BarcodeData.Security.BIP70);
+                etNotes.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Timber.d("security is %s", barcodeData.security);
+                        processScannedData(barcodeData);
+                        etNotes.requestFocus();
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(final Exception ex) {
+                resolvingPP = false;
+                etAddress.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int errorMsgId = R.string.send_address_not_bip70;
+                        if (ex instanceof XmrToException) {
+                            XmrToError error = ((XmrToException) ex).getError();
+                            if (error != null) {
+                                errorMsgId = error.getErrorMsgId();
+                            }
+                        }
+                        etAddress.setError(getString(errorMsgId));
+                    }
+                });
+                Timber.d("PP FAILED");
+            }
+        });
+    }
+
     private boolean checkAddressNoError() {
         String address = etAddress.getEditText().getText().toString();
         return Wallet.isAddressValid(address)
-                || BitcoinAddressValidator.validate(address);
+                || BitcoinAddressValidator.validate(address)
+                || (resolvedPP != null);
     }
 
     private boolean checkAddress() {
@@ -296,11 +384,8 @@ public class SendAddressWizardFragment extends SendWizardFragment {
     }
 
     private boolean isBitcoinAddress() {
-        String address = etAddress.getEditText().getText().toString();
-        if ((address.length() >= 27) && (address.length() <= 35))
-            return BitcoinAddressValidator.validate(address);
-        else
-            return false;
+        final String address = etAddress.getEditText().getText().toString();
+        return BitcoinAddressValidator.validate(address);
     }
 
     private boolean checkPaymentId() {
@@ -325,25 +410,39 @@ public class SendAddressWizardFragment extends SendWizardFragment {
 
     @Override
     public boolean onValidateFields() {
-        boolean ok = true;
         if (!checkAddressNoError()) {
             shakeAddress();
-            ok = false;
-            String dnsOA = dnsFromOpenAlias(etAddress.getEditText().getText().toString());
+            String enteredAddress = etAddress.getEditText().getText().toString().trim();
+            String dnsOA = dnsFromOpenAlias(enteredAddress);
             Timber.d("OpenAlias is %s", dnsOA);
             if (dnsOA != null) {
                 processOpenAlias(dnsOA);
+            } else {
+                String bip70 = PaymentProtocolHelper.getBip70(enteredAddress);
+                if (bip70 != null) {
+                    processBip70(bip70);
+                }
             }
+            return false;
         }
+
         if (!checkPaymentId()) {
             etPaymentId.startAnimation(Helper.getShakeAnimation(getContext()));
-            ok = false;
+            return false;
         }
-        if (!ok) return false;
+
         if (sendListener != null) {
             TxData txData = sendListener.getTxData();
-            if (isBitcoinAddress()) {
-                ((TxDataBtc) txData).setBtcAddress(etAddress.getEditText().getText().toString());
+            if (txData instanceof TxDataBtc) {
+                if (resolvedPP != null) {
+                    // take the value from the field nonetheless as this is what the user sees
+                    // (in case we have a bug somewhere)
+                    ((TxDataBtc) txData).setBip70(etAddress.getEditText().getText().toString());
+                    ((TxDataBtc) txData).setBtcAddress(null);
+                } else {
+                    ((TxDataBtc) txData).setBtcAddress(etAddress.getEditText().getText().toString());
+                    ((TxDataBtc) txData).setBip70(null);
+                }
                 txData.setDestinationAddress(null);
                 txData.setPaymentId("");
             } else {
@@ -384,12 +483,22 @@ public class SendAddressWizardFragment extends SendWizardFragment {
     }
 
     public void processScannedData() {
+        resolvedPP = null;
         BarcodeData barcodeData = sendListener.getBarcodeData();
         if (barcodeData != null) {
             Timber.d("GOT DATA");
-            String scannedAddress = barcodeData.address;
-            if (scannedAddress != null) {
-                etAddress.getEditText().setText(scannedAddress);
+
+            if (barcodeData.bip70 != null) {
+                setBtcMode();
+                if (barcodeData.security == BarcodeData.Security.BIP70) {
+                    resolvedPP = barcodeData.bip70;
+                    etAddress.setError(getString(R.string.send_address_bip70));
+                } else {
+                    processBip70(barcodeData.bip70);
+                }
+                etAddress.getEditText().setText(barcodeData.bip70);
+            } else if (barcodeData.address != null) {
+                etAddress.getEditText().setText(barcodeData.address);
                 if (checkAddress()) {
                     if (barcodeData.security == BarcodeData.Security.OA_NO_DNSSEC)
                         etAddress.setError(getString(R.string.send_address_no_dnssec));
@@ -400,6 +509,7 @@ public class SendAddressWizardFragment extends SendWizardFragment {
                 etAddress.getEditText().getText().clear();
                 etAddress.setError(null);
             }
+
             String scannedPaymentId = barcodeData.paymentId;
             if (scannedPaymentId != null) {
                 etPaymentId.getEditText().setText(scannedPaymentId);

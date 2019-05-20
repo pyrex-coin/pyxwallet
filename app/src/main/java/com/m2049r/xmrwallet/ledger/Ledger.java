@@ -34,6 +34,7 @@ import java.io.IOException;
 import timber.log.Timber;
 
 public class Ledger {
+    static final public boolean ENABLED = true;
     // 5:20 is same as wallet2.cpp::restore()
     static public final int LOOKAHEAD_ACCOUNTS = 5;
     static public final int LOOKAHEAD_SUBADDRESSES = 20;
@@ -44,6 +45,7 @@ public class Ledger {
     public static final int OK[] = {SW_OK};
 
     public static UsbDevice findDevice(UsbManager usbManager) {
+        if (!ENABLED) return null;
         return BTChipTransportAndroidHID.getDevice(usbManager);
     }
 
@@ -126,8 +128,8 @@ public class Ledger {
         if (response.length < 2) {
             throw new BTChipException("Truncated response");
         }
-        lastSW = ((int) (response[response.length - 2] & 0xff) << 8) |
-                (int) (response[response.length - 1] & 0xff);
+        lastSW = ((response[response.length - 2] & 0xff) << 8) |
+                response[response.length - 1] & 0xff;
         byte[] result = new byte[response.length - 2];
         System.arraycopy(response, 0, result, 0, response.length - 2);
         return result;

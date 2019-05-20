@@ -27,16 +27,18 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.m2049r.xmrwallet.BuildConfig;
 import com.m2049r.xmrwallet.R;
 import com.m2049r.xmrwallet.data.TxData;
 import com.m2049r.xmrwallet.model.PendingTransaction;
 import com.m2049r.xmrwallet.model.Wallet;
 import com.m2049r.xmrwallet.util.Helper;
-import com.m2049r.xmrwallet.util.UserNotes;
+import com.m2049r.xmrwallet.data.UserNotes;
 
 import timber.log.Timber;
 
@@ -87,12 +89,12 @@ public class SendConfirmWizardFragment extends SendWizardFragment implements Sen
         View view = inflater.inflate(
                 R.layout.fragment_send_confirm, container, false);
 
-        tvTxAddress = (TextView) view.findViewById(R.id.tvTxAddress);
-        tvTxPaymentId = (TextView) view.findViewById(R.id.tvTxPaymentId);
-        tvTxNotes = (TextView) view.findViewById(R.id.tvTxNotes);
-        tvTxAmount = ((TextView) view.findViewById(R.id.tvTxAmount));
-        tvTxFee = (TextView) view.findViewById(R.id.tvTxFee);
-        tvTxTotal = (TextView) view.findViewById(R.id.tvTxTotal);
+        tvTxAddress = view.findViewById(R.id.tvTxAddress);
+        tvTxPaymentId = view.findViewById(R.id.tvTxPaymentId);
+        tvTxNotes = view.findViewById(R.id.tvTxNotes);
+        tvTxAmount = view.findViewById(R.id.tvTxAmount);
+        tvTxFee = view.findViewById(R.id.tvTxFee);
+        tvTxTotal = view.findViewById(R.id.tvTxTotal);
 
         llProgress = view.findViewById(R.id.llProgress);
         pbProgressSend = view.findViewById(R.id.pbProgressSend);
@@ -214,11 +216,16 @@ public class SendConfirmWizardFragment extends SendWizardFragment implements Sen
         if (pendingTransaction != null) {
             llConfirmSend.setVisibility(View.VISIBLE);
             bSend.setEnabled(true);
-            tvTxAmount.setText(Wallet.getDisplayAmount(pendingTransaction.getAmount()));
             tvTxFee.setText(Wallet.getDisplayAmount(pendingTransaction.getFee()));
-            //tvTxDust.setText(Wallet.getDisplayAmount(pendingTransaction.getDust()));
-            tvTxTotal.setText(Wallet.getDisplayAmount(
-                    pendingTransaction.getFee() + pendingTransaction.getAmount()));
+            if (getActivityCallback().isStreetMode()
+                    && (sendListener.getTxData().getAmount() == Wallet.SWEEP_ALL)) {
+                tvTxAmount.setText(getString(R.string.street_sweep_amount));
+                tvTxTotal.setText(getString(R.string.street_sweep_amount));
+            } else {
+                tvTxAmount.setText(Wallet.getDisplayAmount(pendingTransaction.getAmount()));
+                tvTxTotal.setText(Wallet.getDisplayAmount(
+                        pendingTransaction.getFee() + pendingTransaction.getAmount()));
+            }
         } else {
             llConfirmSend.setVisibility(View.GONE);
             bSend.setEnabled(false);
@@ -231,7 +238,7 @@ public class SendConfirmWizardFragment extends SendWizardFragment implements Sen
         android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(activity);
         alertDialogBuilder.setView(promptsView);
 
-        final TextInputLayout etPassword = (TextInputLayout) promptsView.findViewById(R.id.etPassword);
+        final TextInputLayout etPassword = promptsView.findViewById(R.id.etPassword);
         etPassword.setHint(getString(R.string.prompt_send_password));
 
         etPassword.getEditText().addTextChangedListener(new TextWatcher() {
@@ -317,6 +324,11 @@ public class SendConfirmWizardFragment extends SendWizardFragment implements Sen
                 return false;
             }
         });
+        // set FLAG_SECURE to prevent screenshots in Release Mode
+        if (!(BuildConfig.DEBUG && BuildConfig.FLAVOR_type.equals("alpha"))) {
+            passwordDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        }
+
         passwordDialog.show();
     }
 

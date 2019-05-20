@@ -36,7 +36,7 @@ import com.m2049r.xmrwallet.model.TransactionInfo;
 import com.m2049r.xmrwallet.model.Transfer;
 import com.m2049r.xmrwallet.model.Wallet;
 import com.m2049r.xmrwallet.util.Helper;
-import com.m2049r.xmrwallet.util.UserNotes;
+import com.m2049r.xmrwallet.data.UserNotes;
 import com.m2049r.xmrwallet.widget.Toolbar;
 
 import java.text.SimpleDateFormat;
@@ -60,6 +60,7 @@ public class TxFragment extends Fragment {
     }
 
     private TextView tvAccount;
+    private TextView tvAddress;
     private TextView tvTxTimestamp;
     private TextView tvTxId;
     private TextView tvTxKey;
@@ -70,7 +71,6 @@ public class TxFragment extends Fragment {
     private TextView tvTxFee;
     private TextView tvTxTransfers;
     private TextView etTxNotes;
-    private Button bTxNotes;
 
     // XMRTO stuff
     private View cvXmrTo;
@@ -85,35 +85,24 @@ public class TxFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tx_info, container, false);
 
         cvXmrTo = view.findViewById(R.id.cvXmrTo);
-        tvTxXmrToKey = (TextView) view.findViewById(R.id.tvTxXmrToKey);
-        tvDestinationBtc = (TextView) view.findViewById(R.id.tvDestinationBtc);
-        tvTxAmountBtc = (TextView) view.findViewById(R.id.tvTxAmountBtc);
+        tvTxXmrToKey = view.findViewById(R.id.tvTxXmrToKey);
+        tvDestinationBtc = view.findViewById(R.id.tvDestinationBtc);
+        tvTxAmountBtc = view.findViewById(R.id.tvTxAmountBtc);
 
-        tvAccount = (TextView) view.findViewById(R.id.tvAccount);
-        tvTxTimestamp = (TextView) view.findViewById(R.id.tvTxTimestamp);
-        tvTxId = (TextView) view.findViewById(R.id.tvTxId);
-        tvTxKey = (TextView) view.findViewById(R.id.tvTxKey);
-        tvDestination = (TextView) view.findViewById(R.id.tvDestination);
-        tvTxPaymentId = (TextView) view.findViewById(R.id.tvTxPaymentId);
-        tvTxBlockheight = (TextView) view.findViewById(R.id.tvTxBlockheight);
-        tvTxAmount = (TextView) view.findViewById(R.id.tvTxAmount);
-        tvTxFee = (TextView) view.findViewById(R.id.tvTxFee);
-        tvTxTransfers = (TextView) view.findViewById(R.id.tvTxTransfers);
-        etTxNotes = (TextView) view.findViewById(R.id.etTxNotes);
-        bTxNotes = (Button) view.findViewById(R.id.bTxNotes);
+        tvAccount = view.findViewById(R.id.tvAccount);
+        tvAddress = view.findViewById(R.id.tvAddress);
+        tvTxTimestamp = view.findViewById(R.id.tvTxTimestamp);
+        tvTxId = view.findViewById(R.id.tvTxId);
+        tvTxKey = view.findViewById(R.id.tvTxKey);
+        tvDestination = view.findViewById(R.id.tvDestination);
+        tvTxPaymentId = view.findViewById(R.id.tvTxPaymentId);
+        tvTxBlockheight = view.findViewById(R.id.tvTxBlockheight);
+        tvTxAmount = view.findViewById(R.id.tvTxAmount);
+        tvTxFee = view.findViewById(R.id.tvTxFee);
+        tvTxTransfers = view.findViewById(R.id.tvTxTransfers);
+        etTxNotes = view.findViewById(R.id.etTxNotes);
 
         etTxNotes.setRawInputType(InputType.TYPE_CLASS_TEXT);
-
-        bTxNotes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                info.notes = null; // force reload on next view
-                bTxNotes.setEnabled(false);
-                etTxNotes.setEnabled(false);
-                userNotes.setNote(etTxNotes.getText().toString());
-                activityCallback.onSetNote(info.hash, userNotes.txNotes);
-            }
-        });
 
         tvTxXmrToKey.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,14 +116,6 @@ public class TxFragment extends Fragment {
         TransactionInfo info = args.getParcelable(ARG_INFO);
         show(info);
         return view;
-    }
-
-    public void onNotesSet(boolean reload) {
-        bTxNotes.setEnabled(true);
-        etTxNotes.setEnabled(true);
-        if (reload) {
-            loadNotes(this.info);
-        }
     }
 
     void shareTxInfo() {
@@ -219,12 +200,16 @@ public class TxFragment extends Fragment {
         if (info.txKey == null) {
             info.txKey = activityCallback.getTxKey(info.hash);
         }
+        if (info.address == null) {
+            info.address = activityCallback.getTxAddress(info.account, info.subaddress);
+        }
         loadNotes(info);
 
         activityCallback.setSubtitle(getString(R.string.tx_title));
         activityCallback.setToolbarButton(Toolbar.BUTTON_BACK);
 
         tvAccount.setText(getString(R.string.tx_account_formatted, info.account, info.subaddress));
+        tvAddress.setText(info.address);
 
         tvTxTimestamp.setText(TS_FORMATTER.format(new Date(info.timestamp * 1000)));
         tvTxId.setText(info.hash);
@@ -309,7 +294,6 @@ public class TxFragment extends Fragment {
         }
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -331,7 +315,9 @@ public class TxFragment extends Fragment {
 
         String getTxNotes(String hash);
 
-        void onSetNote(String txId, String notes);
+        boolean setTxNotes(String txId, String txNotes);
+
+        String getTxAddress(int major, int minor);
 
         void setToolbarButton(int type);
 
@@ -348,5 +334,17 @@ public class TxFragment extends Fragment {
             throw new ClassCastException(context.toString()
                     + " must implement Listener");
         }
+    }
+
+    @Override
+    public void onPause() {
+        if (!etTxNotes.getText().toString().equals(userNotes.note)) { // notes have changed
+            // save them
+            userNotes.setNote(etTxNotes.getText().toString());
+            info.notes = userNotes.txNotes;
+            activityCallback.setTxNotes(info.hash, info.notes);
+        }
+        Helper.hideKeyboard(getActivity());
+        super.onPause();
     }
 }

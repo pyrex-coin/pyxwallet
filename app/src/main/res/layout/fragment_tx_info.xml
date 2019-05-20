@@ -79,8 +79,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:drawablePadding="8dp"
                     android:drawableStart="@drawable/ic_xmrto_32dp"
+                    android:drawablePadding="8dp"
                     android:gravity="center"
                     android:text="@string/label_send_btc_xmrto_info" />
 
@@ -115,6 +115,7 @@
                             style="@style/MoneroLabel.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="top"
                             android:gravity="end"
                             android:padding="8dp"
                             android:text="@string/tx_destination_btc" />
@@ -152,10 +153,10 @@
                                 android:background="@color/dotGray"
                                 android:drawableEnd="@drawable/ic_content_copy_white_24dp"
                                 android:drawablePadding="16dp"
-                                android:paddingBottom="8dp"
-                                android:paddingEnd="8dp"
                                 android:paddingStart="24dp"
                                 android:paddingTop="8dp"
+                                android:paddingEnd="8dp"
+                                android:paddingBottom="8dp"
                                 android:textColor="@color/white"
                                 tools:text="XMR.TO-d2KQ" />
                         </LinearLayout>
@@ -175,64 +176,70 @@
 
                 <TextView
                     style="@style/MoneroLabel.Small"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="top"
                     android:gravity="end"
                     android:padding="8dp"
                     android:text="@string/tx_account" />
-
-                <TextView
-                    android:id="@+id/tvAccount"
-                    style="@style/MoneroText"
-                    android:gravity="start"
-                    android:padding="8dp"
-                    android:selectAllOnFocus="true"
-                    android:textIsSelectable="true" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    style="@style/MoneroLabel.Small"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="end"
-                    android:padding="8sp"
-                    android:text="@string/tx_notes" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/etTxNotes"
-                        style="@style/MoneroEdit"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvAccount"
+                        style="@style/MoneroText"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@+id/bTxNotes"
-                        android:backgroundTint="@color/moneroGray"
-                        android:hint="@string/tx_notes_hint"
-                        android:inputType="textMultiLine" />
-
-                    <Button
-                        android:id="@+id/bTxNotes"
-                        style="@style/MoneroButton.Small"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerInParent="true"
-                        android:enabled="true"
-                        android:paddingEnd="8dp"
+                        android:layout_alignParentTop="true"
+                        android:gravity="start"
                         android:paddingStart="8dp"
-                        android:text="@string/tx_button_notes" />
-                </RelativeLayout>
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:selectAllOnFocus="true"
+                        android:textIsSelectable="true"
+                        tools:text="(0,1)" />
 
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        style="@style/MoneroText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvAccount"
+                        android:gravity="start"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        android:selectAllOnFocus="true"
+                        android:textIsSelectable="true"
+                        tools:text="4BKjy1uVRTPiz4pHyaXXawb82XpzLiowSDd8rEQJGqvN6AD6kWosLQ6VJXW9sghopxXgQSh1RTd54JdvvCRsXiF41xvfeW5" />
+                </RelativeLayout>
             </TableRow>
 
             <TableRow>
 
                 <TextView
                     style="@style/MoneroLabel.Small"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="top"
+                    android:gravity="end"
+                    android:padding="8sp"
+                    android:text="@string/tx_notes" />
+
+                <EditText
+                    android:id="@+id/etTxNotes"
+                    style="@style/MoneroEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/moneroGray"
+                    android:hint="@string/tx_notes_hint"
+                    android:inputType="textMultiLine" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    style="@style/MoneroLabel.Small"
+                    android:layout_gravity="top"
                     android:gravity="end"
                     android:padding="8dp"
                     android:text="@string/tx_destination" />
@@ -250,7 +257,7 @@
 
                 <TextView
                     style="@style/MoneroLabel.Small"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="top"
                     android:gravity="end"
                     android:padding="8dp"
                     android:text="@string/tx_paymentId" />
@@ -268,7 +275,7 @@
 
                 <TextView
                     style="@style/MoneroLabel.Small"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="top"
                     android:gravity="end"
                     android:padding="8dp"
                     android:text="@string/tx_id" />
@@ -286,7 +293,7 @@
 
                 <TextView
                     style="@style/MoneroLabel.Small"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="top"
                     android:gravity="end"
                     android:padding="8dp"
                     android:text="@string/tx_key" />
@@ -304,7 +311,7 @@
 
                 <TextView
                     style="@style/MoneroLabel.Small"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="top"
                     android:gravity="end"
                     android:padding="8dp"
                     android:text="@string/tx_blockheight" />
@@ -322,7 +329,7 @@
 
                 <TextView
                     style="@style/MoneroLabel.Small"
-                    android:layout_gravity="center_vertical"
+                    android:layout_gravity="top"
                     android:gravity="end"
                     android:padding="8dp"
                     android:text="@string/tx_transfers" />

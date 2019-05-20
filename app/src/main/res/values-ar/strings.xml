@@ -40,7 +40,7 @@
 
     <string name="info_xmrto"><![CDATA[
         <b>You entered a Bitcoin address.</b><br/>
-        <i>You&apos;ll send XMR and the receiver will get BTC using the <b>XMR.TO</b> service.</i>
+        <i>You&apos;ll send PYX and the receiver will get BTC using the <b>PYX.TO</b> service.</i>
     ]]></string>
 
     <string name="info_send_xmrto_success_order_label">PYX.TO Order</string>
@@ -55,7 +55,7 @@
 
     <string name="info_send_xmrto_parms"><![CDATA[
         <b>You can send %1$s &#8212; %2$s BTC</b>.<br/>
-        <i><b>XMR.TO</b> is giving you an exchange rate of <b>%3$s BTC</b> <u>right now</u></i>.
+        <i><b>PYX.TO</b> is giving you an exchange rate of <b>%3$s BTC</b> <u>right now</u></i>.
     ]]></string>
     <string name="info_send_xmrto_zeroconf"><![CDATA[
         <i>Amounts up to <b>%1$s BTC</b> will be sent <u>instantly</u>!</i>
@@ -70,7 +70,7 @@
     <string name="label_send_progress_xmrto_query">Querying PYX.TO Order</string>
     <string name="label_send_progress_create_tx">Preparing Pyrexcoin Transaction</string>
 
-    <string name="label_send_progress_queryparms">Querying XMR.TO parameters</string>
+    <string name="label_send_progress_queryparms">Querying PYX.TO parameters</string>
 
     <string name="label_generic_xmrto_error">PYX.TO ERROR</string>
     <string name="text_generic_xmrto_error">Code: %1$d</string>
@@ -319,7 +319,7 @@
 
     <string-array name="currency" translatable="false">
         <item>PYX</item>
-        <item>XMR</item>
+        <item>PYX</item>
         <item>EUR</item>
         <item>USD</item>
         <item>JPY</item>

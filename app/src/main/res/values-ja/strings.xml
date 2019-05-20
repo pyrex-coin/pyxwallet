@@ -1,325 +1,299 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:locale="en">
-    <string name="app_name" translatable="false">Pyrexcoin</string>
-    <string name="wallet_activity_name">Wallet</string>
+    <string name="app_name" translatable="false">pyxwallet</string>
+    <string name="wallet_activity_name">ウォレット</string>
 
-    <string name="menu_stagenet" translatable="false">Stagenet</string>
-    <string name="menu_about">About</string>
-    <string name="menu_privacy">Privacy Policy</string>
+    <string name="menu_about">Monerujoについて</string>
+    <string name="menu_privacy">プライバシーポリシー</string>
 
-    <string name="menu_share">Share</string>
-    <string name="menu_help">Help</string>
-    <string name="menu_info">Details</string>
-    <string name="menu_receive">Receive</string>
-    <string name="menu_rename">Rename &#8230;</string>
-    <string name="menu_archive">Archive</string>
-    <string name="menu_backup">Backup</string>
-    <string name="menu_changepw">Change Passphrase</string>
+    <string name="menu_share">共有</string>
+    <string name="menu_help">ヘルプ</string>
+    <string name="menu_receive">受取り</string>
+    <string name="menu_rename">名前の変更 &#8230;</string>
+    <string name="menu_archive">アーカイブ</string>
+    <string name="menu_backup">バックアップ</string>
+    <string name="menu_changepw">パスフレーズの変更</string>
 
-    <string name="password_weak">Continue typing &#8230;</string>
-    <string name="password_fair">Meh &#8230;</string>
-    <string name="password_good">C\'mon, you can do better!</string>
-    <string name="password_strong">Getting there &#8230;</string>
-    <string name="password_very_strong">Yeah baby, h4x0r style!</string>
+    <string name="password_weak">もっと入力してください -</string>
+    <string name="password_fair">うーん -</string>
+    <string name="password_good">あなたならもっと頑張れるはずだよ!</string>
+    <string name="password_strong">いい調子だね -</string>
+    <string name="password_very_strong">やったぜ、ハッカー並だ!</string>
 
-    <string name="label_login_wallets">Wallets</string>
-    <string name="label_credits">Credits</string>
+    <string name="label_login_wallets">ウォレット</string>
+    <string name="label_credits">クレジット</string>
     <string name="label_ok">OK</string>
-    <string name="label_cancel">Cancel</string>
-    <string name="label_close">Close</string>
-    <string name="label_wallet_advanced_details">Touch for detailed information</string>
+    <string name="label_cancel">キャンセル</string>
+    <string name="label_close">閉じる</string>
+    <string name="label_wallet_advanced_details">タッチして詳細情報を見る</string>
 
-    <string name="label_send_success">Successfully sent</string>
-    <string name="label_send_done">Done</string>
+    <string name="label_send_success">送金成功</string>
+    <string name="label_send_done">完了</string>
 
-    <string name="label_receive_info_gen_qr_code">Touch for QR Code</string>
-    <string name="info_send_prio_fees">Higher Priority = Higher Fees</string>
+    <string name="label_receive_info_gen_qr_code">タッチしてQRコードを表示</string>
 
-    <string name="info_xmrto_enabled">BTC payment enabled, tap for more info.</string>
-    <string name="info_crazypass_enabled">CrAzYpass enabled, tap for more info.</string>
-    <string name="info_ledger_enabled">Ledger enabled, tap for more info.</string>
+    <string name="info_xmrto_enabled">BTC支払いは有効化されています。詳細はタップしてください。</string>
+    <string name="info_ledger_enabled">レッジャーは有効化されています。詳細はタップしてください。</string>
 
     <string name="info_xmrto"><![CDATA[
-        <b>You entered a Bitcoin address.</b><br/>
-        <i>You&apos;ll send XMR and the receiver will get BTC using the <b>XMR.TO</b> service.</i>
+        <b>あなたが入力したのはビットコインのアドレスです。</b><br/>
+        <i>あなたはXMRを送金し、受け手は PYX.TO のサービスを利用してBTCを受取ります。</i>
     ]]></string>
 
-    <string name="info_send_xmrto_success_order_label">PYX.TO Order</string>
+    <string name="info_send_xmrto_success_order_label">PYX.TO の注文</string>
 
     <string name="info_send_xmrto_success_btc">%1$s BTC</string>
 
-    <string name="info_send_xmrto_paid">Confirmation Pending</string>
-    <string name="info_send_xmrto_unpaid">Payment Pending</string>
-    <string name="info_send_xmrto_error">PYX.TO Error (%1$s)</string>
-    <string name="info_send_xmrto_sent">BTC Sent!</string>
-    <string name="info_send_xmrto_query">Querying &#8230;</string>
+    <string name="info_send_xmrto_paid">承認を待っています</string>
+    <string name="info_send_xmrto_unpaid">支払いを待っています</string>
+    <string name="info_send_xmrto_error">PYX.TO のエラー (%1$s)</string>
+    <string name="info_send_xmrto_sent">BTCが送金されました!</string>
+    <string name="info_send_xmrto_query">問い合わせ中 &#8230;</string>
 
     <string name="info_send_xmrto_parms"><![CDATA[
-        <b>You can send %1$s &#8212; %2$s BTC</b>.<br/>
-        <i><b>XMR.TO</b> is giving you an exchange rate of <b>%3$s BTC</b> <u>right now</u></i>.
+        <b>%1$s から %2$s BTC を送金することができます。</b><br/>
+        <i><b>PYX.TO</b> での交換レートは<u>現在</u><b>%3$s BTC</b>です。</i>
     ]]></string>
     <string name="info_send_xmrto_zeroconf"><![CDATA[
-        <i>Amounts up to <b>%1$s BTC</b> will be sent <u>instantly</u>!</i>
+        <i><b>%1$s BTC</b> までの数量は <u>即時に</u>送金可能です!</i>
     ]]></string>
 
-    <string name="send_available_btc">Balance: %2$s BTC (%1$s PYX)</string>
+    <string name="send_available_btc">残高: %2$s BTC (%1$s PYX)</string>
 
-    <string name="info_paymentid_intergrated">Payment ID integrated</string>
-    <string name="info_prepare_tx">Preparing your transaction</string>
+    <string name="info_paymentid_intergrated">ペイメントID組み込み済み</string>
+    <string name="info_prepare_tx">取引を準備しています</string>
 
-    <string name="label_send_progress_xmrto_create">Creating PYX.TO Order</string>
-    <string name="label_send_progress_xmrto_query">Querying PYX.TO Order</string>
-    <string name="label_send_progress_create_tx">Preparing Pyrexcoin Transaction</string>
+    <string name="label_send_progress_xmrto_create">PYX.TO の注文を作成しています</string>
+    <string name="label_send_progress_xmrto_query">PYX.TO の注文を問い合わせています</string>
+    <string name="label_send_progress_create_tx">モネロの取引を準備しています</string>
 
-    <string name="label_send_progress_queryparms">Querying XMR.TO parameters</string>
+    <string name="label_send_progress_queryparms">PYX.TO のパラメータを問い合わせています</string>
 
-    <string name="label_generic_xmrto_error">PYX.TO ERROR</string>
-    <string name="text_generic_xmrto_error">Code: %1$d</string>
+    <string name="label_generic_xmrto_error">PYX.TO のエラー</string>
+    <string name="text_generic_xmrto_error">コード: %1$d</string>
 
-    <string name="text_retry">Touch to retry</string>
-    <string name="text_noretry_monero">Now we\'re stuck here!</string>
-    <string name="text_noretry">Uh-oh, PYX.TO does not seem be available right now!</string>
+    <string name="text_retry">タッチして再試行</string>
+    <string name="text_noretry_monero">私達はここで立ち往生のようです!</string>
+    <string name="text_noretry">あーあ、 PYX.TO は現在利用不能のようです!</string>
 
     <string name="text_send_btc_amount">%1$s BTC = %2$s PYX</string>
-    <string name="text_send_btc_rate">(Rate: %1$s BTC/PYX)</string>
+    <string name="text_send_btc_rate">(レート: %1$s BTC/PYX)</string>
 
-    <string name="label_send_settings_advanced">Advanced:</string>
+    <string name="label_send_btc_xmrto_info">サポートと追跡については xmr.to をご覧ください</string>
+    <string name="label_send_btc_xmrto_key_lb">シークレットキー\nXMR.TO</string>
+    <string name="label_send_btc_xmrto_key">PYX.TO のシークレットキー</string>
+    <string name="label_send_btc_address">支払先の BTC アドレス</string>
+    <string name="label_send_btc_amount">数量</string>
 
-    <string name="label_send_btc_xmrto_info">Visit PYX.to for support &amp; tracking</string>
-    <string name="label_send_btc_xmrto_key_lb">Secret Key\nPYX.TO</string>
-    <string name="label_send_btc_xmrto_key">PYX.TO Secret Key</string>
-    <string name="label_send_btc_address">Destination BTC Address</string>
-    <string name="label_send_btc_amount">Amount</string>
+    <string name="label_send_txid">取引ID</string>
+    <string name="label_send_address">送金先アドレス</string>
+    <string name="label_send_payment_id">ペイメントID</string>
+    <string name="label_send_notes">メモ</string>
 
-    <string name="label_send_txid">Transaction ID</string>
-    <string name="label_send_address">Destination Address</string>
-    <string name="label_send_payment_id">Payment ID</string>
-    <string name="label_send_notes">Notes</string>
+    <string name="backup_progress">バックアップ中</string>
+    <string name="archive_progress">アーカイブ中</string>
+    <string name="rename_progress">名前の変更中</string>
+    <string name="changepw_progress">パスワードの変更中</string>
 
-    <string name="backup_progress">Backup in progress</string>
-    <string name="archive_progress">Archive in progress</string>
-    <string name="rename_progress">Rename in progress</string>
-    <string name="open_progress">Checking daemon connection</string>
-    <string name="changepw_progress">Change Password in progress</string>
+    <string name="service_progress">準備中 &#8230;\nしばらく時間がかかるかもしれません!</string>
 
-    <string name="service_progress">Wrapping things up &#8230;\nThis can take a while!</string>
+    <string name="backup_failed">バックアップに失敗しました!</string>
+    <string name="archive_failed">アーカイブに失敗しました!</string>
+    <string name="rename_failed">名前の変更に失敗しました!</string>
+    <string name="changepw_failed">パスワード変更に失敗しました!</string>
+    <string name="changepw_success">パスワードが変更されました</string>
 
-    <string name="backup_failed">Backup failed!</string>
-    <string name="archive_failed">Archive failed!</string>
-    <string name="rename_failed">Rename failed!</string>
-    <string name="changepw_failed">Change Password failed!</string>
-    <string name="changepw_success">Password changed</string>
+    <string name="label_daemon">ノード</string>
+    <string name="connect_stagenet" translatable="false">ステージネット</string>
+    <string name="connect_testnet" translatable="false">テストネット</string>
+    <string name="status_wallet_loading">ウォレットをロード中 &#8230;</string>
+    <string name="status_wallet_unloaded">ウォレットが保存されました</string>
+    <string name="status_wallet_unload_failed">ウォレットの保存に失敗しました!</string>
+    <string name="status_wallet_connecting">接続中 &#8230;</string>
+    <string name="status_wallet_connect_failed">ノードの接続に失敗しました!\nユーザ名/パスワードを確認してください</string>
+    <string name="status_wallet_connect_wrongversion">互換性のないバージョンのノードです - アップグレードしてください!</string>
+    <string name="status_wallet_node_invalid">無効なノードです!\n別のを試してください。</string>
+    <string name="status_wallet_connect_ioex">ノードに到達できません!\nもう一度試すか、別のを試してください</string>
 
-    <string name="label_daemon">Node</string>
-    <string name="prompt_daemon">([&lt;user&gt;:&lt;pass&gt;@]&lt;daemon&gt;[:&lt;port&gt;])</string>
-    <string name="connect_stagenet" translatable="false">Stagenet</string>
-    <string name="connect_testnet" translatable="false">Testnet</string>
-    <string name="connect_mainnet" translatable="false">Mainnet</string>
-    <string name="status_wallet_loading">Loading Wallet &#8230;</string>
-    <string name="status_wallet_unloaded">Wallet saved</string>
-    <string name="status_wallet_unload_failed">Wallet save failed!</string>
-    <string name="status_wallet_connecting">Connecting &#8230;</string>
-    <string name="status_wallet_connect_failed">Node connection failed!\nCheck username/password</string>
-    <string name="status_wallet_connect_wrongversion">Node version incompatible - please upgrade!</string>
-    <string name="status_wallet_connect_timeout">Node connection timed out!\nTry again or another.</string>
-    <string name="status_wallet_node_invalid">Node invalid!\nTry another.</string>
-    <string name="status_wallet_connect_ioex">Cannot reach node!\nTry again or another.</string>
+    <string name="status_wallet_disconnected">接続が切断されました</string>
 
-    <string name="status_wallet_disconnected">Disconnected</string>
+    <string name="status_transaction_failed">取引に失敗しました: %1$s</string>
 
-    <string name="status_transaction_failed">Transaction failed: %1$s</string>
+    <string name="send_xmrto_timeout">時間がかかりすぎているようです!</string>
 
-    <string name="send_xmrto_timeout">You waited too long my friend!</string>
+    <string name="service_busy">まだ前のウォレットの処理をしています &#8230;</string>
 
-    <string name="service_busy">I am still busy with your last wallet &#8230;</string>
+    <string name="prompt_rename">%1$s の名称変更</string>
 
-    <string name="prompt_rename">Rename %1$s</string>
+    <string name="prompt_changepw">%1$s の新しいパスフレーズ</string>
+    <string name="prompt_changepwB">%1$s の新しいパスフレーズを再入力</string>
+    <string name="prompt_password">%1$s のパスワード</string>
+    <string name="prompt_fingerprint_auth">あなたは指紋でもウォレットを開くことができます。\nセンサーにタッチしてください。</string>
+    <string name="prompt_send_password">パスワードを確認</string>
+    <string name="prompt_open_wallet">ウォレットを開いています&#8230;</string>
+    <string name="bad_fingerprint">指紋が認識できません。もう一度試してください。</string>
+    <string name="bad_password">パスワードが違います!</string>
+    <string name="bad_saved_password">保存されたパスワードは不正確です。\n手動でパスワードを入力してください。</string>
+    <string name="bad_wallet">ウォレットは存在しません!</string>
+    <string name="prompt_daemon_missing">ノードを設定する必要があります!</string>
+    <string name="prompt_wrong_net">選択されたネットワークとウォレットが一致しません</string>
 
-    <string name="prompt_changepw">New Passphrase for %1$s</string>
-    <string name="prompt_changepwB">Repeat Passphrase for %1$s</string>
-    <string name="prompt_password">Password for %1$s</string>
-    <string name="prompt_fingerprint_auth">You can also open wallet using fingerprint.\nPlease touch sensor.</string>
-    <string name="prompt_send_password">Confirm Password</string>
-    <string name="prompt_open_wallet">Opening the wallet&#8230;</string>
-    <string name="bad_fingerprint">Fingerprint not recognized. Try again.</string>
-    <string name="bad_password">Incorrect password!</string>
-    <string name="bad_saved_password">Saved password is incorrect.\nPlease enter password manually.</string>
-    <string name="bad_wallet">Wallet does not exist!</string>
-    <string name="prompt_daemon_missing">Daemon address must be set!</string>
-    <string name="prompt_wrong_net">Wallet does not match selected net</string>
+    <string name="label_watchonly">(閲覧専用)</string>
 
-    <string name="label_watchonly">(Watch Only)</string>
+    <string name="label_wallet_receive">受取り</string>
+    <string name="label_wallet_send">送金</string>
 
-    <string name="label_wallet_receive">Receive</string>
-    <string name="label_wallet_send">Give</string>
+    <string name="xmr_unconfirmed_amount">+ %1$s PYX が未承認</string>
 
-    <string name="xmr_unconfirmed_amount">+ %1$s PYX unconfirmed</string>
+    <string name="service_description">pyxwallet のサービス</string>
 
-    <string name="service_description">Pyrexcoin Service</string>
+    <string name="status_synced">同期済み:</string>
+    <string name="status_remaining">残りのブロック</string>
+    <string name="status_syncing">スキャン中:</string>
 
-    <string name="status_synced">Synced:</string>
-    <string name="status_remaining">Blocks remaining</string>
-    <string name="status_syncing">Scanning:</string>
+    <string name="message_strorage_not_writable">外部ストレージへの書き込みができません!パニックです!</string>
+    <string name="message_strorage_not_permitted">外部ストレージへの書き込み権限が必要です!</string>
+    <string name="message_camera_not_permitted">カメラがありません = QRコードのスキャニングもできません!</string>
 
-    <string name="message_strorage_not_writable">External Storage is not writable! Panic!</string>
-    <string name="message_strorage_not_permitted">We really need those External Storage permissions!</string>
-    <string name="message_camera_not_permitted">No camera = No QR scanning!</string>
+    <string name="label_copy_viewkey">表示用キー</string>
+    <string name="label_copy_address">公開アドレス</string>
+    <string name="label_copy_xmrtokey">PYX.TO キー</string>
+    <string name="message_copy_viewkey">表示用キーがクリップボードにコピーされました!</string>
+    <string name="message_copy_xmrtokey">PYX.TO キーがクリップボードにコピーされました!</string>
+    <string name="message_copy_address">ウォレットアドレスがクリップボードにコピーされました!</string>
+    <string name="message_copy_txid">取引IDがクリップボードにコピーされました!</string>
+    <string name="message_nocopy">セキュリティ上の理由でコピーは無効化されています!</string>
 
-    <string name="label_copy_viewkey">View Key</string>
-    <string name="label_copy_address">Public Address</string>
-    <string name="label_copy_xmrtokey">PYX.TO Key</string>
-    <string name="message_copy_viewkey">View Key copied to clipboard!</string>
-    <string name="message_copy_xmrtokey">PYX.TO Key copied to clipboard!</string>
-    <string name="message_copy_address">Wallet Address copied to clipboard!</string>
-    <string name="message_copy_txid">Transaction ID copied to clipboard!</string>
-    <string name="message_nocopy">Copy disabled for security reasons!</string>
+    <string name="message_exchange_failed">取引レートを取得できません!\nXMR/PYX を使うかもう一度試してください</string>
 
-    <string name="message_exchange_failed">Cannot get exchange rate!\nUse PYX/PYX or try again</string>
-
-    <string name="generate_title">Create Wallet</string>
-    <string name="generate_name_hint">Wallet Name</string>
-    <string name="generate_password_hint">Wallet Passphrase</string>
-    <string name="generate_fingerprint_hint">Allow to open wallet using fingerprint</string>
+    <string name="generate_title">ウォレット作成</string>
+    <string name="generate_name_hint">ウォレットの名前</string>
+    <string name="generate_password_hint">ウォレットのパスフレーズ</string>
+    <string name="generate_fingerprint_hint">指紋でウォレットを開くのを許可する</string>
     <string name="generate_fingerprint_warn"><![CDATA[
-        <strong>Fingerprint Authentication</strong>
-        <p>With fingerprint authentication enabled, you can view wallet balance and receive funds
-        without entering password.</p>
-        <p>But for additional security, Pyrexcoin will still require you to enter password when
-        viewing wallet details or sending funds.</p>
-        <strong>Security Warning</strong>
-        <p>Finally, Pyrexcoin wants to remind you that anyone who can get your fingerprint will be
-        able to peep into your wallet balance.</p>
-        <p>For instance, a malicious user around you can open your wallet when you are asleep.</p>
-        <strong>Are you sure to enable this function?</strong>
+        <strong>指紋認証</strong>
+        <p>指紋認証を有効化すると、あなたはウォレット残高の閲覧と資産の受取をパスワード無しで行なえます。</p>
+        <p>しかしセキュリティのため、monerujoはウォレットの詳細の閲覧と送金にはパスワードを要します。</p>
+        <strong>セキュリティ警告</strong>
+        <p>そして最後に、あなたの指紋を入手できる人間は誰でもあなたのウォレット残高を覗くことができます。</p>
+        <p>例えば、あなたの周りの邪悪な人間が、あなたが寝ている間にウォレットを開くかもしれません。</p>
+        <strong>この機能を本当に有効化しますか?</strong>
     ]]></string>
-    <string name="generate_bad_passwordB">Passphrases do not match</string>
-    <string name="generate_empty_passwordB">Passphrase may not be empty</string>
-    <string name="generate_buttonGenerate">Make me a wallet already!</string>
-    <string name="generate_button_accept">I have noted the mnemonic seed</string>
+    <string name="generate_bad_passwordB">パスフレーズが一致しません</string>
+    <string name="generate_empty_passwordB">パスフレーズは空白ではいけません</string>
+    <string name="generate_buttonGenerate">ウォレットを作成します!</string>
+    <string name="generate_button_accept">ニーモニック・シードをメモしました</string>
 
-    <string name="generate_wallet_name">Give me a name!</string>
-    <string name="generate_wallet_exists">Wallet exists!</string>
-    <string name="generate_wallet_dot">Cannot begin with .</string>
-    <string name="generate_wallet_creating">Creating wallet</string>
-    <string name="generate_wallet_created">Wallet created</string>
-    <string name="generate_wallet_create_failed">Wallet create failed</string>
+    <string name="generate_wallet_name">名前をつけてください!</string>
+    <string name="generate_wallet_exists">ウォレットが存在します!</string>
+    <string name="generate_wallet_dot">ドット(.)から始まることはできません</string>
+    <string name="generate_wallet_creating">ウォレット作成中</string>
+    <string name="generate_wallet_created">ウォレットが作成されました</string>
 
-    <string name="generate_restoreheight_error">Enter Number or Date (YYYY-MM-DD)</string>
+    <string name="generate_restoreheight_error">数字か日付（年4桁-月2桁-日2桁）を入力してください</string>
 
-    <string name="generate_wallet_type_key">Keys</string>
-    <string name="generate_wallet_type_new">New</string>
-    <string name="generate_wallet_type_seed">Seed</string>
-    <string name="generate_wallet_type_view">View</string>
-    <string name="generate_wallet_type_ledger" translatable="false">Ledger</string>
+    <string name="generate_wallet_type_key">キー</string>
+    <string name="generate_wallet_type_new">新規</string>
+    <string name="generate_wallet_type_seed">シード</string>
+    <string name="generate_wallet_type_view">閲覧</string>
+    <string name="generate_wallet_type_ledger" translatable="false">レッジャー</string>
 
-    <string name="generate_address_hint">Public Address</string>
-    <string name="generate_viewkey_hint">View Key</string>
-    <string name="generate_spendkey_hint">Spend Key</string>
-    <string name="generate_mnemonic_hint">25-Word Mnemonic Seed</string>
-    <string name="generate_restoreheight_hint">Restore Height or Date (YYYY-MM-DD)</string>
+    <string name="generate_address_hint">公開アドレス</string>
+    <string name="generate_viewkey_hint">表示用キー</string>
+    <string name="generate_spendkey_hint">送金用キー</string>
+    <string name="generate_mnemonic_hint">25単語のニーモニック・シード</string>
+    <string name="generate_restoreheight_hint">復元するブロック長または日付（年4桁-月2桁-日2桁）</string>
 
-    <string name="generate_address_label">Public Address</string>
-    <string name="generate_viewkey_label">View Key</string>
-    <string name="generate_spendkey_label">Spend Key</string>
-    <string name="generate_mnemonic_label">Mnemonic Seed</string>
-    <string name="generate_crazypass_label">Wallet Files Restore Password</string>
+    <string name="generate_address_label">公開アドレス</string>
+    <string name="generate_viewkey_label">表示用キー</string>
+    <string name="generate_spendkey_label">送金用キー</string>
+    <string name="generate_mnemonic_label">ニーモニック・シード</string>
+    <string name="generate_crazypass_label">ウォレットファイル復元パスワード</string>
 
-    <string name="generate_check_key">Enter valid Key</string>
-    <string name="generate_check_address">Enter valid Address</string>
-    <string name="generate_check_mnemonic">Enter your 25 word seed</string>
+    <string name="generate_check_key">有効なキーを入力してください</string>
+    <string name="generate_check_address">有効なアドレスを入力してください</string>
+    <string name="generate_check_mnemonic">25 単語のシードを入力してください</string>
 
-    <string name="send_amount_btc_xmr">%1$s (indicative)</string>
+    <string name="send_amount_btc_xmr">%1$s (指定)</string>
 
-    <string name="send_address_hint">Receiver\'s PYX Address or OpenAlias</string>
-    <string name="send_paymentid_hint">Payment ID (optional)</string>
+    <string name="send_paymentid_hint">ペイメントID (オプション)</string>
     <string name="send_amount_hint">0.00</string>
-    <string name="send_notes_hint">Private Notes (optional)</string>
-    <string name="send_generate_paymentid_hint">Generate</string>
-    <string name="send_qr_hint" translatable="false">Scan</string>
-    <string name="send_send_label">Spend my sweet Pyrexcoin</string>
-    <string name="send_send_timed_label">Spend my sweet Pyrexcoin (%1$s)</string>
-    <string name="send_qr_invalid">Not a QR Code</string>
-    <string name="send_qr_address_invalid">Not a valid payment QR code</string>
-    <string name="send_address_invalid">Not a valid address</string>
-    <string name="send_address_not_openalias">OpenAlias address not available</string>
-    <string name="send_address_openalias">OpenAlias secure &#x2714;</string>
-    <string name="send_address_resolve_openalias">Resolving OpenAlias&#8230;</string>
-    <string name="send_address_no_dnssec">OpenAlias without DNSSEC - address may be spoofed</string>
-    <string name="send_title">Send</string>
-    <string name="send_available">Balance: %1$s PYX</string>
-    <string name="send_address_title">Address</string>
-    <string name="send_amount_title">Amount</string>
-    <string name="send_confirm_title">Confirm</string>
-    <string name="send_success_title">Done</string>
+    <string name="send_notes_hint">プライベートノート (オプション)</string>
+    <string name="send_generate_paymentid_hint">生成</string>
+    <string name="send_qr_hint" translatable="false">スキャン</string>
+    <string name="send_send_label">モネロを送金する</string>
+    <string name="send_send_timed_label">モネロを送金する (%1$s)</string>
+    <string name="send_qr_invalid">QRコードではありません</string>
+    <string name="send_qr_address_invalid">有効な支払いQRコードではありません</string>
+    <string name="send_address_invalid">有効なアドレスではありません</string>
+    <string name="send_address_not_openalias">OpenAlias アドレスは利用不可能です</string>
+    <string name="send_address_openalias">OpenAlias はセキュアです &#x2714;</string>
+    <string name="send_address_resolve_openalias">OpenAliasを解決しています&#8230;</string>
+    <string name="send_address_no_dnssec">DNSSECのないOpenAliasです - アドレスが偽造されているかもしれません</string>
+    <string name="send_title">送金</string>
+    <string name="send_available">残高: %1$s PYX</string>
+    <string name="send_address_title">アドレス</string>
+    <string name="send_amount_title">数量</string>
+    <string name="send_confirm_title">確認</string>
+    <string name="send_success_title">完了</string>
 
-    <string name="send_amount_label">Amount</string>
-    <string name="send_fee_btc_label">Fee (PYX)</string>
-    <string name="send_fee_label">Fee</string>
-    <string name="send_total_btc_label">Total (PYX)</string>
-    <string name="send_total_label">Total</string>
+    <string name="send_amount_label">数量</string>
+    <string name="send_fee_btc_label">手数料 (PYX)</string>
+    <string name="send_fee_label">手数料</string>
+    <string name="send_total_btc_label">合計 (PYX)</string>
+    <string name="send_total_label">合計</string>
 
     <string name="send_amount">%1$s PYX</string>
-    <string name="send_fee">+%1$s Fee</string>
+    <string name="send_fee">+%1$s 手数料</string>
 
-    <string name="send_create_tx_error_title">Create Transaction Error</string>
+    <string name="send_create_tx_error_title">取引作成エラー</string>
 
-    <string name="tx_list_fee">- Fee %1$s</string>
+    <string name="tx_list_fee">- 手数料 %1$s</string>
     <string name="tx_list_amount_failed">(%1$s)</string>
-    <string name="tx_list_failed_text">failed</string>
+    <string name="tx_list_failed_text">失敗</string>
     <string name="tx_list_amount_negative">- %1$s</string>
     <string name="tx_list_amount_positive">+ %1$s</string>
 
-    <string name="tx_timestamp">Timestamp</string>
-    <string name="tx_id">TX ID</string>
-    <string name="tx_key">TX Key</string>
-    <string name="tx_destination">Destination</string>
-    <string name="tx_destination_btc">Destination\n(BTC)</string>
-    <string name="tx_paymentId">Payment ID</string>
-    <string name="tx_blockheight">Block</string>
-    <string name="tx_amount">Amount</string>
-    <string name="tx_amount_btc">Amount\n(BTC)</string>
-    <string name="tx_fee">Fee</string>
-    <string name="tx_transfers">Transfers</string>
-    <string name="tx_notes">Notes</string>
-    <string name="tx_notes_hint">(optional)</string>
-    <string name="tx_button_notes">Save</string>
-    <string name="tx_notes_set_failed">Notes saved failed</string>
-    <string name="tx_title">Transaction Details</string>
+    <string name="tx_timestamp">タイムスタンプ</string>
+    <string name="tx_id">取引ID</string>
+    <string name="tx_key">取引キー</string>
+    <string name="tx_destination">送金先</string>
+    <string name="tx_destination_btc">送金先\n(BTC)</string>
+    <string name="tx_paymentId">ペイメントID</string>
+    <string name="tx_blockheight">ブロック</string>
+    <string name="tx_amount">数量</string>
+    <string name="tx_amount_btc">数量\n(BTC)</string>
+    <string name="tx_fee">手数料</string>
+    <string name="tx_transfers">送金</string>
+    <string name="tx_notes">メモ</string>
+    <string name="tx_notes_hint">(オプション)</string>
+    <string name="tx_button_notes">保存</string>
+    <string name="tx_notes_set_failed">メモの保存に失敗しました</string>
+    <string name="tx_title">取引詳細</string>
 
-    <string name="tx_pending">PENDING</string>
-    <string name="tx_failed">FAILED</string>
+    <string name="tx_pending">待機中</string>
+    <string name="tx_failed">失敗</string>
 
-    <string name="receive_paymentid_hint">Payment ID (optional)</string>
-    <string name="receive_amount_hint">Amount</string>
-    <string name="receive_desc_hint">Description (optional)</string>
-    <string name="receive_cannot_open">Could not open wallet!</string>
-    <string name="receive_paymentid_invalid">16 or 64 Hex characters (0&#8211;9,a&#8211;f)</string>
-    <string name="receive_integrated_paymentid_invalid">Must be empty with integrated address</string>
+    <string name="receive_amount_hint">数量</string>
+    <string name="receive_desc_hint">説明 (オプション)</string>
+    <string name="receive_cannot_open">ウォレットを開けませんでした!</string>
+    <string name="receive_paymentid_invalid">16 または 64 文字の16進数 (0&#8211;9,a&#8211;f)</string>
+    <string name="receive_integrated_paymentid_invalid">インテグレーテッドアドレスでは空でなければなりません</string>
 
-    <string name="receive_amount_too_big">Max. %1$s</string>
-    <string name="receive_amount_negative">Min. 0</string>
-    <string name="receive_amount_nan">PYX not a number</string>
+    <string name="receive_amount_too_big">最大. %1$s</string>
+    <string name="receive_amount_negative">最小. 0</string>
+    <string name="receive_amount_nan">PYX が数字ではありません</string>
 
-    <string name="receive_title">Receive</string>
+    <string name="details_alert_message">機密データは表示されません\n背後に人がいないことを確認してください!</string>
+    <string name="details_alert_yes">私は安全です</string>
+    <string name="details_alert_no">戻ります!</string>
+    <string name="details_title">詳細</string>
 
-    <string name="details_alert_message">Sensitive data will now be shown.\nLook over your shoulder!</string>
-    <string name="details_alert_yes">I\'m safe</string>
-    <string name="details_alert_no">Take me back!</string>
-    <string name="details_title">Details</string>
-
-    <string name="archive_alert_message">The wallet will be backed up and then deleted!</string>
-    <string name="archive_alert_yes">Yes, do that!</string>
-    <string name="archive_alert_no">No thanks!</string>
-
-    <string-array name="priority">
-        <item>Priority Default</item>
-        <item>Priority Low</item>
-        <item>Priority Medium</item>
-        <item>Priority High</item>
-    </string-array>
+    <string name="archive_alert_message">ウォレットはバックアップされてから削除されます!</string>
+    <string name="archive_alert_yes">はい、お願いします!</string>
+    <string name="archive_alert_no">いいえ、結構です!</string>
 
     <string-array name="currency" translatable="false">
         <item>PYX</item>
-        <item>XMR</item>
         <item>EUR</item>
         <item>USD</item>
         <item>JPY</item>
@@ -355,49 +329,102 @@
         <item>TWD</item>
     </string-array>
 
-    <string name="fab_create_new">Create new wallet</string>
-    <string name="fab_restore_viewonly">Restore view-only wallet</string>
-    <string name="fab_restore_key">Restore wallet from private keys</string>
-    <string name="fab_restore_seed">Restore wallet 25 word seed</string>
+    <string name="fab_create_new">新しいウォレットの作成</string>
+    <string name="fab_restore_viewonly">閲覧専用ウォレットを復元</string>
+    <string name="fab_restore_key">秘密鍵からウォレットを復元</string>
+    <string name="fab_restore_seed">25単語のシードからウォレットを復元</string>
 
     <string name="accounts_balance" translatable="false">%1$s PYX</string>
     <string name="tx_account_formatted" translatable="false">(%1$d, %2$d)</string>
 
-    <string name="accounts_drawer_new">Create Account</string>
-    <string name="accounts_drawer_title">Accounts</string>
-    <string name="accounts_new">Added new account #%1$d</string>
-    <string name="tx_account">Account #</string>
+    <string name="accounts_drawer_new">アカウントを作成</string>
+    <string name="accounts_new">新しいアカウントを追加 #%1$d</string>
+    <string name="tx_account">アカウント #</string>
 
-    <string name="send_sweepall">Send all confirmed funds in this account!</string>
-    <string name="tx_subaddress">Subaddress #%1$d</string>
-    <string name="generate_address_label_sub">Public Subaddress #%1$d</string>
+    <string name="send_sweepall">このアカウントの承認された資産をすべて送金する!</string>
+    <string name="tx_subaddress">サブアドレス#%1$d</string>
+    <string name="generate_address_label_sub">公開サブアドレス #%1$d</string>
 
-    <string name="menu_language">Language</string>
-    <string name="language_system_default">Use System Language</string>
+    <string name="menu_language">言語</string>
+    <string name="language_system_default">システムの言語を使う</string>
 
-    <string name="fab_restore_ledger">Restore from Ledger Nano S</string>
+    <string name="fab_restore_ledger">レッジャーナノSから復元</string>
 
-    <string name="progress_ledger_progress">Communicating with Ledger</string>
-    <string name="progress_ledger_confirm">Confirmation on Ledger required!</string>
-    <string name="progress_ledger_lookahead">Retrieving subaddresses</string>
-    <string name="progress_ledger_verify">Verifying keys</string>
-    <string name="progress_ledger_opentx">Doing crazy maths</string>
-    <string name="progress_ledger_mlsag">Hashing stuff</string>
-    <string name="open_wallet_ledger_missing">Please (re)connect Ledger device</string>
+    <string name="progress_ledger_progress">レッジャーと通信中</string>
+    <string name="progress_ledger_confirm">レッジャーでの承認が必要です!</string>
+    <string name="progress_ledger_lookahead">サブアドレスを取得中</string>
+    <string name="progress_ledger_verify">鍵を検証中</string>
+    <string name="progress_ledger_opentx">ヤバイ数学を実行中</string>
+    <string name="progress_ledger_mlsag">諸々をハッシュ化中</string>
+    <string name="open_wallet_ledger_missing">レッジャーデバイスを（再）接続してください</string>
 
-    <string name="accounts_progress_new">Creating account</string>
-    <string name="accounts_progress_update">Updating wallet</string>
+    <string name="accounts_progress_new">アカウント作成中</string>
 
-    <string name="toast_ledger_attached">%1$s attached</string>
-    <string name="toast_ledger_detached">%1$s detached</string>
+    <string name="toast_ledger_attached">%1$s が取り付けられました</string>
+    <string name="toast_ledger_detached">%1$s が取り外されました</string>
 
-    <string name="progress_nfc_write">Writing Tag</string>
-    <string name="nfc_write_failed">Writing Tag failed!</string>
-    <string name="nfc_write_successful">Writing Tag successful</string>
-    <string name="nfc_tag_unsupported">Tag does not support NDEF!</string>
-    <string name="nfc_tag_size">Tag provides %1$d bytes, but we need %2$d!</string>
-    <string name="nfc_tag_read_undef">I don\'t understand the Tag!</string>
-    <string name="nfc_tag_read_what">I don\'t know what you want!</string>
-    <string name="nfc_tag_read_success">Reading Tag successful</string>
-    <string name="nfc_tag_tap">NFC Available!</string>
+    <string name="progress_nfc_write">タグ書き込み中</string>
+    <string name="nfc_write_failed">タグ書き込みに失敗!</string>
+    <string name="nfc_write_successful">タグ書き込みに成功</string>
+    <string name="nfc_tag_unsupported">タグはNDEFをサポートしていません!</string>
+    <string name="nfc_tag_size">タグは %1$d バイトを提供していますが, 私達は %2$d が必要です!</string>
+    <string name="nfc_tag_read_undef">タグを理解できません!</string>
+    <string name="nfc_tag_read_what">あなたが何をしたいのかわかりません!</string>
+    <string name="nfc_tag_read_success">タグ読み込み成功</string>
+    <string name="nfc_tag_tap">NFCが利用可能です!</string>
+
+    <string name="unknown_amount" translatable="false">\?\?\?</string>
+
+    <string name="menu_info">シークレットを見せてください!</string>
+    <string name="menu_streetmode">ストリートモード</string>
+
+    <string name="node_wrong_net" translatable="false">ノードのスキャンはメインネット専用です!</string>
+
+    <string name="info_nodes_enabled">ノードは有効です。詳細はタップしてください</string>
+    <string name="node_height">最新のアップデートされたブロック: %1$s</string>
+    <string name="label_nodes">ノード</string>
+    <string name="node_name_hint">ノード名 (オプション)</string>
+    <string name="node_address_hint">ホスト名</string>
+    <string name="node_port_hint">ポート</string>
+    <string name="node_user_hint">ユーザ名 (オプション)</string>
+    <string name="node_pass_hint">パスワード (オプション)</string>
+    <string name="node_host_unresolved">ホストを解決できません</string>
+    <string name="node_host_empty">これは必須項目です!</string>
+    <string name="node_port_numeric">数字でなければなりません</string>
+    <string name="node_port_range">1&#8211;65535 でなければなりません</string>
+    <string name="node_fab_add">ノードを追加</string>
+    <string name="node_refresh_hint">タッチして更新!</string>
+    <string name="node_test_error">接続エラー %1$d</string>
+    <string name="node_general_error">接続エラー</string>
+    <string name="node_auth_error">認証失敗</string>
+    <string name="node_result_label">テスト結果:</string>
+    <string name="node_result">ブロック長: %1$s (v%2$d), Ping: %3$.0fms, IP: %4$s</string>
+    <string name="node_testing">IPをテスト中: %1$s &#8230;</string>
+    <string name="node_refresh_wait">スキャンが終わるまでお待ちください</string>
+    <string name="node_create_hint">タッチしてノードを追加または選択してください</string>
+    <string name="node_pull_hint">ノードを手動で追加するか、プルダウンしてスキャンしてください</string>
+    <string name="node_scanning">ネットワークをスキャン中&#8230;</string>
+    <string name="node_nobookmark">最良の %1$d ノードを自動でブックマークしました</string>
+    <string name="label_test">テスト</string><!--note: as in "Test a network connection"-->
+
+    <string name="backup_success">バックアップ成功</string>
+
+    <string name="send_address_resolve_bip70">ペイメントIDの名前解決中&#8230;</string>
+    <string name="send_address_not_bip70">ペイメントIDの名前解決できませんでした</string>
+    <string name="send_address_bip70">ペイメントIDの名前解決しました &#x2714;</string>
+    <!-- please verify this means "Receiver" or "Recipient" as in "Receiver in the transaction" -->
+    <string name="send_address_hint">受け取り手</string>
+
+    <string name="xmrto_error_001">PYX.TOはオフラインです。もう一度お試しください</string>
+    <string name="xmrto_error_004">BTCの金額は範囲外</string>
+    <string name="xmrto_error_010">ペイメントURLは不正古いです</string>
+    <string name="xmrto_error_012">リクエストは多すぎます</string>
+
+    <string name="street_sweep_amount">残高合計！</string> <!-- as in: "everything in the account" = "all the money" -->
+
+    <string name="menu_ledger_seed">Ledgerシードを転換</string>
+    <string name="prompt_ledger_seed">Ledgerのニーモニックシード</string>
+    <string name="prompt_ledger_phrase">Ledgerパスフレーズ （オプショナル）</string>
+    <string name="bad_ledger_seed">Ledgerのニーモニックシードは不正!</string>
+    <string name="prompt_ledger_seed_warn">ここにLedgerシードを入力するのは、大きなセキュリティリスクですよ！</string>
 </resources>

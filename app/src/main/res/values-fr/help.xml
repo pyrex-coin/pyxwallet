@@ -2,7 +2,7 @@
 <resources>
     <string name="help_create_new"><![CDATA[
         <h1>Créer un Portefeuille - Nouveau</h1>
-        <p>Si vous avez besoin d’une nouvelle adresse Monero !</p>
+        <p>Si vous avez besoin d’une nouvelle adresse Pyrexcoin !</p>
         <p>Entrez un nom et un mot de passe unique pour le portefeuille.
         Le mot de passe permet de sécuriser les données de votre portefeuille sur votre appareil.
         Utilisez un mot de passe fort - mieux, utilisez une phrase secrète.</p>
@@ -23,7 +23,7 @@
 
     <string name="help_create_seed"><![CDATA[
         <h1>Créer un Portefeuille - Phrase Mnémonique</h1>
-        <p>Si vous avez déjà une adresse Monero et que vus voulez reécupérer vos transactions depuis la chaïne de blocs !</p>
+        <p>Si vous avez déjà une adresse Pyrexcoin et que vus voulez reécupérer vos transactions depuis la chaïne de blocs !</p>
         <p>Entrez un nom et un mot de passe unique pour le portefeuille.
         Le mot de passe permet de sécuriser les données de votre portefeuille sur votre appareil.
         Utilisez un mot de passe fort - mieux, utilisez une phrase secrète.</p>
@@ -40,7 +40,7 @@
         <p>Entrez un nom et un mot de passe unique pour le portefeuille.
         Le mot de passe permet de sécuriser les données de votre portefeuille sur votre appareil.
         Utilisez un mot de passe fort - mieux, utilisez une phrase secrète.<p>
-        <p>Entrez votre adresse Monero dans le champ \"Adresse Publique\" et remplissez \"Clef d’Audit\" et \"Clef de dépense\".</p>
+        <p>Entrez votre adresse Pyrexcoin dans le champ \"Adresse Publique\" et remplissez \"Clef d’Audit\" et \"Clef de dépense\".</p>
         <p>Entrez le numéro du bloc de la première transaction utilisée pour cette adresse dans le
         champ \"Hauteur de restauration\". Vous pouvez également utiliser une date au format AAA-MM-JJ.
         Si vous n\'êtes pas sûr, entrer une date / hauteur de block approximative <em>avant</em> que vous
@@ -53,7 +53,7 @@
         <p>Entrez un nom et un mot de passe unique pour le portefeuille.
         Le mot de passe permet de sécuriser les données de votre portefeuille sur votre appareil.
         Utilisez un mot de passe fort - mieux, utilisez une phrase secrète.<p>
-        <p>Entrez votre adresse Monero dans le champ \"Adresse Publique\" et remplissez la \"Clef d’Audit\".</p>
+        <p>Entrez votre adresse Pyrexcoin dans le champ \"Adresse Publique\" et remplissez la \"Clef d’Audit\".</p>
         <p>Entrez le numéro du bloc de la première transaction utilisée pour cette adresse dans le
         champ \"Hauteur de restauration\". Vous pouvez également utiliser une date au format AAA-MM-JJ.
         Si vous n\'êtes pas sûr, entrer une date / hauteur de block approximative <em>avant</em> que vous
@@ -100,13 +100,13 @@
     <string name="help_list"><![CDATA[
         <h1>Liste des Portefeuilles</h1>
         <h2>Nœud</h2>
-        <p>Monerujo utilise un nœud distant pour communiquer avec le réseau Monero sans avoir à
+        <p>Monerujo utilise un nœud distant pour communiquer avec le réseau Pyrexcoin sans avoir à
         télécharger et stocker une copie complète de la chaîne de bloc. vous pourrez trouver une
         liste de nœud distant populaire ou apprendre comment faire fonctionner votre propre nœud
         distant ici https://moneroworld.com/<p>
         <p>Monerujo est fourni avec quelques Nœuds distants préenregistrés. Les cinq derniers nœuds utilisé sont sauvegardés.</p>
         <h2>Portefeuilles</h2>
-        <p>Ici vous pouvez voir vos Portefeuilles. Ils se trouvent dans le dossier <tt>monerujo</tt>
+        <p>Ici vous pouvez voir vos Portefeuilles. Ils se trouvent dans le dossier <tt>pyxwallet</tt>
         du stockage interne de votre appareil. Vous pouvez utiliser une application d’explorateur
         de fichiers pour les vois. Vous devriez faire des sauvegardes régulières de ce répertoire
         sur un stockage externe au cas où votre appareil exploserait ou serait volé.</p>
@@ -119,32 +119,12 @@
         <h3>Renommer</h3>
         <p>Renommez le portefeuille. Les sauvegardes ne sont pas renommées.</p>
         <h3>Sauvegarde</h3>
-        <p>Faites une copie du portefeuille dans le sous-répertoire <tt>backups</tt> de <tt>monerujo</tt>
+        <p>Faites une copie du portefeuille dans le sous-répertoire <tt>backups</tt> de <tt>pyxwallet</tt>
         remplaçant les copies précédentes s’y trouvant.</p>
         <h3>Archivage</h3>
         <p>Faites une sauvegarde du portefeuille suivi de sa suppression. La copie reste dans le répertoire
         <tt>backups</tt>. Si vous n’avez plus besoin de vos sauvegardes, vous devriez les supprimer avec
         une application d’explorateur de fichiers ou une application de suppression sécurisée.</p>
-    ]]></string>
-
-    <string name="help_wallet"><![CDATA[
-        <h1>Le Portefeuille</h1>
-        <h2>Analyse</h2>
-        Comme Monero aime garder les choses confidentielles, nous devons scanner la chaîne de blocs
-        chaque fois que vous ouvrez un portefeuille Monerujo pour voir si de nouveau Moneroj ont été
-        envoyés à votre portefeuille, cela ne stock sur votre appareil que les informations appartenant
-        à votre portefeuille. Parfois cela peut prendre un moment si vous n’avez pas synchronisé depuis
-        longtemps.
-        <h2>Le Solde</h2>
-        <p><b>Au secours ! Le solde de mon portefeuille à disparu ou est non confirmé !</b><br/>
-        Ne paniquez pas ! lorsque vous envoyez des fonds sur votre portefeuille, une partie de votre
-        solde sera temporairement affichée comme non confirmée.
-        Cela se produit à cause de la façon dont Monero est échangé sur la chaîne de blocs et du
-        fonctionnement de la monnaie dans Monero. Aprenez-en plus à propos de la monnaie dans Monero
-        sur https://getmonero.org/fr/resources/moneropedia/change.html
-        <h2>Liste des Transactions</h2>
-        <p>Une listes des transactions du portefeuille. Dans un portefeuille d’Audit, seules les
-        transactions entrantes sont affichées.</p>
     ]]></string>
 
     <string name="help_tx_details"><![CDATA[
@@ -158,7 +138,7 @@
         acheté.
         <h2>ID TX</h2>
         C’est votre ID de transaction, vous pouvez l’utiliser pour identifier vos transaction masquées
-        sur un explorateur de la chaîne de blocs Monero comme <a href="https://xmrchain.net/">https://xmrchain.net/</a>
+        sur un explorateur de la chaîne de blocs Pyrexcoin comme <a href="https://xmrchain.net/">https://xmrchain.net/</a>
         <h2>Clef TX (Clef de Transaction)</h2>
         C’est la clef privée de votre transaction, conservez là en sécurité car la révéler à un
         tiers révèlerait quelle signature est la votre dans un cercle, et donc rendrait votre
@@ -173,78 +153,72 @@
         <p>C’est l’adresse publique du portefeuille auquel vous allez envoyer des Moneroj, vous pouvez
         la copier/coller, scanner un QR code ou la saisir manuellement. Vérifiez là bien trois fois
         afin de vous assurer que vous n’envoyez pas de pièces à la mauvaise adresse.</p>
-        <p>En plus d’envoyer des XMR, vous pouvez envoyer des BTC via le service XMR.TO (voir https://xmr.to
-        pour plus de détails). Consultez la rubrique sur l’envoie de BTC ci-dessous.</p>
+        <p>En complément de l’utilisation d'une adresse PYX, vous pouvez aussi utiliser
+        <ul>
+            <li>une adresse OpenAlias pour PYX ou BTC</li>
+            <li>une adresse BTC</li>
+            <li>une URI bitcoin: (incluant BIP70 comme bitpay)</li>
+        </u>
+        Notez que l’envoi de BTC est traité à travers le service PYX.TO (voir https://xmr.to pour
+        plus de détails). Voir la rubrique sur l’envoi de BTC plus bas.</p>
         <h2>ID de Paiement</h2>
         <p>Vous pouvez utiliser un ID de paiement pour identifier la raison pour laquelle vous avez
         envoyé des Moneroj entre deux parties. C’est totallement privé et optionnel. Il permet par
         exemple à une société de faire concorder votre transaction avec un article que vous avez
         acheté.</p>
-        <h2>Taille du Cercle (Ring Size)</h2>
-        <p>Il y a une taill de cercle à choisir dans Monerujo. Si vous êtes un utilisateur novice
-        nous vous recommandons de rester à la taille de cercle de 7. Augmenter la taille de cerlce
-        au delà de 7 augmente le nombre de signataires dans la signature de cercle, fournissant
-        théoriquement une plus grande dénégation plausible. Cependant, configurer de grandes tailles
-        de cercle peut également faire ressortir votre transaction sur la chaîne de blocs.</p>
-        <h2>Priorité</h2>
-        <p>Ce paramètre détermine la vitesse à laquelle votre transaction sera insérée dans la chaîne
-        de blocs. Une priorité plus élevée sera en lien direct avec des frais de transaction plus
-        élevés, et l’inverse est vrai pour une faible priorité. Veuillez noter que si vous configurez
-        une priorité faible, votre transaction pourrait mettre des heures pour être insérée sur la
-        chaîne de blocs. La priorité par défaut est \"Moyenne\".</p>
         <h1>Envoyer des BTC</h1>
-        <h2>XMR.TO</h2>
-        <p>XMR.TO est un service tierce-partie qui agit commme un change depuis Monero vers Bitcoin.
-        Nous utilisons l’API XMR.TO pour intégrer les paiements Bitcoin dans Monerujo. Veuillez
+        <h2>PYX.TO</h2>
+        <p>PYX.TO est un service tierce-partie qui agit commme un change depuis Pyrexcoin vers Bitcoin.
+        Nous utilisons l’API PYX.TO pour intégrer les paiements Bitcoin dans Monerujo. Veuillez
         consulter https://xmr.to et décidez vous-même si vous souhaitez l’utiliser. L’équipe Monerujo
-        n’est pas affiliée à XMR.TO et ne peut pas vous aider concernant leurs services.</p>
-        <h2>Taux de change XMR.TO<h2>
-        <p>Sur l’écran \"Montant\" vous seront indiqué les paramètres actuels du serive XMR.TO. Cela
+        n’est pas affiliée à PYX.TO et ne peut pas vous aider concernant leurs services.</p>
+        <h2>Taux de change PYX.TO<h2>
+        <p>Sur l’écran \"Montant\" vous seront indiqué les paramètres actuels du serive PYX.TO. Cela
         inclus le taux de change actuel, ainsi que les limites BTC hautes et basses. Notez que ce taux
         n’est pas garantit à ce stade. Vous verrez également le montnt jusqu’auquel la transaction BTC
-        sera exécutée instantanément sans attendre de confirmation XMR (voir la FAQ XMR.TO pour plus de
-        détails). Veuillez noter que XMR.TO n’ajoute pas de frais additionnels - c’est pas cool ça ?</p>
-        <h2>Ordre XMR.TO<h2>
-        <p>Sur l’écran \"Confirmation\", vous verez l’ordre XMR.TO actuel. Cette ordre est valide pour
+        sera exécutée instantanément sans attendre de confirmation PYX (voir la FAQ PYX.TO pour plus de
+        détails). Veuillez noter que PYX.TO n’ajoute pas de frais additionnels - c’est pas cool ça ?</p>
+        <h2>Ordre PYX.TO<h2>
+        <p>Sur l’écran \"Confirmation\", vous verez l’ordre PYX.TO actuel. Cette ordre est valide pour
         un temps limité - vous pouvez remarquer le compte à rebours sur le bouton \"Dépenser\". Ce taux
         de change peut être différent du taux indicatif de l’écran précédent.</p>
-        <h2>Clef Secrète XMR.TO<h2>
-        <p>Comme Monerujo ne traite que le volet Monero de votre transaction, votre clef secrète
-        XMR.TO peut être utilisée pour suivre le volet Bitcoin de votre ordre sur la page d’accueil
-        de XMR.TO.</p>
+        <h2>Clef Secrète PYX.TO<h2>
+        <p>Comme Monerujo ne traite que le volet Pyrexcoin de votre transaction, votre clef secrète
+        PYX.TO peut être utilisée pour suivre le volet Bitcoin de votre ordre sur la page d’accueil
+        de PYX.TO.</p>
         <p>Veuillez noter que cette clef secrète est seulement valable 24h après le lancement de la
         transaction !</p>
-        <h2>Compte à Rebours XMR.TO !</h2>
+        <h2>Compte à Rebours PYX.TO !</h2>
         <p>Une fois que le compte à rebours atteint zéro, vous devrez obtenir un nouveau devis depuis
-        XMR.TO en retournant à l’étape précédente puis en revenant à l’écran \"Confirmation\".</p>
+        PYX.TO en retournant à l’étape précédente puis en revenant à l’écran \"Confirmation\".</p>
     ]]></string>
 
     <string name="help_xmrto"><![CDATA[
         <h1>Envoyer des BTC</h1>
-        <h2>XMR.TO</h2>
-        <p>XMR.TO est un service tierce-partie qui agit commme un change depuis Monero vers Bitcoin.
-        Nous utilisons l’API XMR.TO pour intégrer les paiements Bitcoin dans Monerujo. Veuillez
+        <h2>PYX.TO</h2>
+        <p>PYX.TO est un service tierce-partie qui agit commme un change depuis Pyrexcoin vers Bitcoin.
+        Nous utilisons l’API PYX.TO pour intégrer les paiements Bitcoin dans Monerujo. Veuillez
         consulter https://xmr.to et décidez vous-même si vous souhaitez l’utiliser. L’équipe Monerujo
-        n’est pas affiliée à XMR.TO et ne peut pas vous aider concernant leurs services.</p>
-        <h2>Taux de change XMR.TO<h2>
-        <p>Sur l’écran \"Montant\" vous seront indiqué les paramètres actuels du serive XMR.TO. Cela
+        n’est pas affiliée à PYX.TO et ne peut pas vous aider concernant leurs services.</p>
+        <h2>Taux de change PYX.TO<h2>
+        <p>Sur l’écran \"Montant\" vous seront indiqué les paramètres actuels du serive PYX.TO. Cela
         inclus le taux de change actuel, ainsi que les limites BTC hautes et basses. Notez que ce taux
         n’est pas garantit à ce stade. Vous verrez également le montnt jusqu’auquel la transaction BTC
-        sera exécutée instantanément sans attendre de confirmation XMR (voir la FAQ XMR.TO pour plus de
-        détails). Veuillez noter que XMR.TO n’ajoute pas de frais additionnels - c’est pas cool ça ?</p>
-        <h2>Ordre XMR.TO<h2>
-        <p>Sur l’écran \"Confirmation\", vous verez l’ordre XMR.TO actuel. Cette ordre est valide pour
+        sera exécutée instantanément sans attendre de confirmation PYX (voir la FAQ PYX.TO pour plus de
+        détails). Veuillez noter que PYX.TO n’ajoute pas de frais additionnels - c’est pas cool ça ?</p>
+        <h2>Ordre PYX.TO<h2>
+        <p>Sur l’écran \"Confirmation\", vous verez l’ordre PYX.TO actuel. Cette ordre est valide pour
         un temps limité - vous pouvez remarquer le compte à rebours sur le bouton \"Dépenser\". Ce taux
         de change peut être différent du taux indicatif de l’écran précédent.</p>
-        <h2>Clef Secrète XMR.TO<h2>
-        <p>Comme Monerujo ne traite que le volet Monero de votre transaction, votre clef secrète
-        XMR.TO peut être utilisée pour suivre le volet Bitcoin de votre ordre sur la page d’accueil
-        de XMR.TO.</p>
+        <h2>Clef Secrète PYX.TO<h2>
+        <p>Comme Monerujo ne traite que le volet Pyrexcoin de votre transaction, votre clef secrète
+        PYX.TO peut être utilisée pour suivre le volet Bitcoin de votre ordre sur la page d’accueil
+        de PYX.TO.</p>
         <p>Veuillez noter que cette clef secrète est seulement valable 24h après le lancement de la
         transaction !</p>
-        <h2>Compte à Rebours XMR.TO !</h2>
+        <h2>Compte à Rebours PYX.TO !</h2>
         <p>Une fois que le compte à rebours atteint zéro, vous devrez obtenir un nouveau devis depuis
-        XMR.TO en retournant à l’étape précédente puis en revenant à l’écran \"Confirmation\".</p>
+        PYX.TO en retournant à l’étape précédente puis en revenant à l’écran \"Confirmation\".</p>
     ]]></string>
 
     <string name="help_create_ledger"><![CDATA[
@@ -260,4 +234,94 @@
         Si vous n\'êtes pas sûr, entrer une date / hauteur de block approximative <em>avant</em> que vous
         n’ayez utilisé cette adresse de portefeuille pour la première fois.</p>
     ]]></string>
+
+    <string name="help_wallet"><![CDATA[
+        <h1>Le Portefeuille</h1>
+        <h2>Mode Urbain</h2>
+        <p>Le mode urbain peut être activé / désactivé dans le menu ou l’icône de la tête de Gunther. Dans
+        ce mode, votre solde n’est visible sur aucun écran afin que vous puissiez utiliser votre
+        portefeuille en toute sécurité dans la rue, un bar ou autre lieu public. Les transactions
+        précédentes sont également masquées. Les nouvelles transactions seront affichées, afin que vous
+        puissiez voir que vous avez envoyé ou reçu vos doux Moneroj !</p>
+        <h2>Analyse</h2>
+        Comme Pyrexcoin aime garder les choses confidentielles, nous devons scanner la chaîne de blocs
+        chaque fois que vous ouvrez un portefeuille Monerujo pour voir si de nouveaux Moneroj ont été
+        envoyés à votre portefeuille, cela ne stocke sur votre appareil que les informations appartenant
+        à votre portefeuille. Parfois cela peut prendre un moment si vous n’avez pas synchronisé depuis
+        longtemps.
+        <h2>Le Solde</h2>
+        <p><b>Au secours ! Le solde de mon portefeuille a disparu ou est non confirmé !</b><br/>
+        Ne paniquez pas ! Lorsque vous envoyez des fonds sur votre portefeuille, une partie de votre
+        solde sera temporairement affichée comme non confirmée.
+        Cela se produit à cause de la façon dont Pyrexcoin est échangé sur la chaîne de blocs et du
+        fonctionnement de la monnaie dans Pyrexcoin. Apprenez-en plus à propos de la monnaie dans Pyrexcoin
+        sur https://getmonero.org/fr/resources/moneropedia/change.html
+        <h2>Liste des Transactions</h2>
+        <p>Une listes des transactions du portefeuille. Dans un portefeuille d’Audit, seules les
+        transactions entrantes sont affichées.</p>
+    ]]></string>
+
+    <string name="help_node"><![CDATA[
+        <h1>Nœuds</h1>
+        <h2>En résumé</h2>
+        <p>Rafraichit la liste de nœuds en faisant glisser vers le bas &amp; met en favoris 3 à 5 nœuds pour permettre à Monerujo
+        de choisir le meilleur pour vous !</p>
+        <h2>Qu’est-ce qu’un Nœud ?</h2>
+        <p>Monerujo utilise un Nœud distant (parfois appelé un Démon) pour communiquer avec
+        le réseau Pyrexcoin sans avoir à télécharger et stocker une copie complète de la
+        chaîne de blocs elle-même.<p>
+        <h2>Liste de Nœuds</h2>
+        <p>Si la liste est vide, vous pouvez soit ajouter de nouveaux nœuds manuellement, ou laisser Monerujo
+        scanner le réseau pour vous. Ou les deux. Lire la suite&#8230;</p>
+        <p>La liste des nœuds affiche tous les nœuds connus. De plus, l’horodatage
+        du dernier bloc connu par chaque nœud est indiqué en dessous du nom du nœud. Une icône
+        représenant le comportement de réponse du nœud
+        (qui indique le niveau de connectivité à escompter)
+        est affiché à coté de chaque nœud.</p>
+        <p>N’importe quel nœud de la liste peut être ajouté aux favoris pour un usage ultérieur.
+        Les nœuds qui ne sont pas en favoris seront oubliés.<p>
+        <p>Monerujo choisira le nœud optimal parmi les favoris à chaque fois que vous l’utiliserez.
+        Ceci est fait en vérifiant la hauteur de bloc (à quel point le nœud
+        est à jour ?) de même que le comportement de réponse (à quelle vitesse le nœud répond aux requêtes ?).</p>
+        <p>La liste est triée selon ces caractéristiques, afin que le nœud le plus haut soit celui que Monerujo
+        utilisera tout de suite. Le bas de la liste montrera des nœuds très lents ou indisponibles.</p>
+        <h2>Ajouter un Nœud</h2>
+        <p>En touchant le bouton &quot;Ajouter un Nœud&quot; en bas, il vous sera demandé
+        d’entrer les détails du nœud dans la boite de dialogue suivante.
+        L’&quot;Adresse&quot; est le nom d’hôte ou l’adresse IP du nœud - c’est le seul
+        champ obligatoire.
+        Entrer le &quot;Port&quot; si le nœud ne fonctionne pas sur un port par défaut (p.e. 18089).
+        Vous pouvez optionnellement donner un nom au nœud, afin que vous puissiez plus facilement l’identifier plus tard.
+        Certains nœud nécessitent des identifiants pour les utiliser. Entrer les nom d’utilisateur &amp;
+        mot de passe dans les champs appropriés. Maintenant vous pouvez &quot;Tester&quot; ces paramêtres.
+        Le &quot;Résultat du test&quot; indiquera la hauteur de bloc, le temps de réponse et l’adresse IP actuellement utilisée.
+        Le résultat pourrait également être une erreur - habituellement car le nom d’hôte fourni n’est
+        pas joignable pendant un temps non négligeable, ou que les identifiants sont incorrects.
+        Ou la combinaison nom d’hôte/port ne renvoie pas vers un nœud Pyrexcoin réel !
+        Une fois que le test réussit (sans erreur) - vous êtes prêt à appuyer sur &quot;OK&quot; pour sauvegarder &amp;
+        mettre ce nœud en favori.</p>
+        <h2>Rechercher des Nœuds</h2>
+        <p>De plus, vous pouvez rechercher des nœuds sur le réseau. Monerujo va commencer à
+        parcourir le réseau à la recherche de nœuds distants sur le port 18089. Il commence par demander à vos
+        nœuds en favoris d’autres homologues dans le réseau Pyrexcoin P2P puis continue
+        en demandant leurs homologues à ceux-ci, et ainsi de suite. Si vous n’avez pas de nœuds en favoris
+        (ou s’ils ne communiquent pas leurs homologues),
+        Monerujo va communiquer directement avec les nœuds d’ensemencement codés en dur dans Pyrexcoin. La
+        recherche s’arrête lorsqu’un total de 10 nœuds distant est récupéré.</p>
+    ]]></string>
+
+    <!-- Note for translators: new/changed text also in help_send -->
+
+    <string name="help_uri"><![CDATA[
+        <h1>Utiliser un lien de paiement</h1>
+        <p>Vous avez démarré pyxwallet avec un lien de paiement. Afin d’envoyer des fonds, merci de procéder comme suit :</p>
+        <p>
+        1. Ouvrez le portefeuille à partir duquel vous souhaitez envoyer des fonds<br>
+        2. Attendez que le portefeuille soit synchronisé &amp; que le bouton "Envoyer" apparaisse<br>
+        3. Taper sur le bouton "Envoyer"
+        </p>
+        <p>Les détails du paiement seront remplis. Vérifiez-les et procédez de la même manière que pour toute autre transaction.</p>
+    ]]></string>
+
+    <string name="help_ok">Got it!</string> <!-- Note: "Got it" as in "I understand this" -->
 </resources>

@@ -27,18 +27,20 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.m2049r.xmrwallet.BuildConfig;
 import com.m2049r.xmrwallet.R;
 import com.m2049r.xmrwallet.data.TxData;
 import com.m2049r.xmrwallet.data.TxDataBtc;
 import com.m2049r.xmrwallet.model.PendingTransaction;
 import com.m2049r.xmrwallet.model.Wallet;
 import com.m2049r.xmrwallet.util.Helper;
-import com.m2049r.xmrwallet.util.OkHttpClientSingleton;
+import com.m2049r.xmrwallet.util.OkHttpHelper;
 import com.m2049r.xmrwallet.widget.SendProgressView;
 import com.m2049r.xmrwallet.xmrto.XmrToError;
 import com.m2049r.xmrwallet.xmrto.XmrToException;
@@ -51,7 +53,6 @@ import com.m2049r.xmrwallet.xmrto.network.XmrToApiImpl;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import okhttp3.HttpUrl;
 import timber.log.Timber;
 
 public class SendBtcConfirmWizardFragment extends SendWizardFragment implements SendConfirm {
@@ -95,21 +96,21 @@ public class SendBtcConfirmWizardFragment extends SendWizardFragment implements 
         View view = inflater.inflate(
                 R.layout.fragment_send_btc_confirm, container, false);
 
-        tvTxBtcAddress = (TextView) view.findViewById(R.id.tvTxBtcAddress);
-        tvTxBtcAmount = ((TextView) view.findViewById(R.id.tvTxBtcAmount));
-        tvTxBtcRate = (TextView) view.findViewById(R.id.tvTxBtcRate);
-        tvTxXmrToKey = (TextView) view.findViewById(R.id.tvTxXmrToKey);
+        tvTxBtcAddress = view.findViewById(R.id.tvTxBtcAddress);
+        tvTxBtcAmount = view.findViewById(R.id.tvTxBtcAmount);
+        tvTxBtcRate = view.findViewById(R.id.tvTxBtcRate);
+        tvTxXmrToKey = view.findViewById(R.id.tvTxXmrToKey);
 
-        tvTxFee = (TextView) view.findViewById(R.id.tvTxFee);
-        tvTxTotal = (TextView) view.findViewById(R.id.tvTxTotal);
+        tvTxFee = view.findViewById(R.id.tvTxFee);
+        tvTxTotal = view.findViewById(R.id.tvTxTotal);
 
 
         llStageA = view.findViewById(R.id.llStageA);
-        evStageA = (SendProgressView) view.findViewById(R.id.evStageA);
+        evStageA = view.findViewById(R.id.evStageA);
         llStageB = view.findViewById(R.id.llStageB);
-        evStageB = (SendProgressView) view.findViewById(R.id.evStageB);
+        evStageB = view.findViewById(R.id.evStageB);
         llStageC = view.findViewById(R.id.llStageC);
-        evStageC = (SendProgressView) view.findViewById(R.id.evStageC);
+        evStageC = view.findViewById(R.id.evStageC);
 
         tvTxXmrToKey.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +123,7 @@ public class SendBtcConfirmWizardFragment extends SendWizardFragment implements 
         llConfirmSend = view.findViewById(R.id.llConfirmSend);
         pbProgressSend = view.findViewById(R.id.pbProgressSend);
 
-        bSend = (Button) view.findViewById(R.id.bSend);
+        bSend = view.findViewById(R.id.bSend);
         bSend.setEnabled(false);
 
         bSend.setOnClickListener(new View.OnClickListener() {
@@ -350,7 +351,7 @@ public class SendBtcConfirmWizardFragment extends SendWizardFragment implements 
         android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(activity);
         alertDialogBuilder.setView(promptsView);
 
-        final TextInputLayout etPassword = (TextInputLayout) promptsView.findViewById(R.id.etPassword);
+        final TextInputLayout etPassword = promptsView.findViewById(R.id.etPassword);
         etPassword.setHint(getString(R.string.prompt_send_password));
 
         etPassword.getEditText().addTextChangedListener(new TextWatcher() {
@@ -436,6 +437,11 @@ public class SendBtcConfirmWizardFragment extends SendWizardFragment implements 
                 return false;
             }
         });
+        // set FLAG_SECURE to prevent screenshots in Release Mode
+        if (!(BuildConfig.DEBUG && BuildConfig.FLAVOR_type.equals("alpha"))) {
+            passwordDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        }
+
         passwordDialog.show();
     }
 
@@ -525,8 +531,8 @@ public class SendBtcConfirmWizardFragment extends SendWizardFragment implements 
         xmrtoStatus = null;
         showProgress(1, getString(R.string.label_send_progress_xmrto_create));
         TxDataBtc txDataBtc = (TxDataBtc) sendListener.getTxData();
-        double btcAmount = txDataBtc.getBtcAmount();
-        getXmrToApi().createOrder(btcAmount, txDataBtc.getBtcAddress(), new XmrToCallback<CreateOrder>() {
+
+        XmrToCallback<CreateOrder> callback = new XmrToCallback<CreateOrder>() {
             @Override
             public void onSuccess(CreateOrder createOrder) {
                 if (!isResumed) return;
@@ -546,7 +552,13 @@ public class SendBtcConfirmWizardFragment extends SendWizardFragment implements 
                 }
                 processCreateOrderError(ex);
             }
-        });
+        };
+
+        if (txDataBtc.getBip70() != null) {
+            getXmrToApi().createOrder(txDataBtc.getBip70(), callback);
+        } else {
+            getXmrToApi().createOrder(txDataBtc.getBtcAmount(), txDataBtc.getBtcAddress(), callback);
+        }
     }
 
     private QueryOrderStatus xmrtoStatus = null;
@@ -667,11 +679,11 @@ public class SendBtcConfirmWizardFragment extends SendWizardFragment implements 
 
     private XmrToApi xmrToApi = null;
 
-    private final XmrToApi getXmrToApi() {
+    private XmrToApi getXmrToApi() {
         if (xmrToApi == null) {
             synchronized (this) {
                 if (xmrToApi == null) {
-                    xmrToApi = new XmrToApiImpl(OkHttpClientSingleton.getOkHttpClient(),
+                    xmrToApi = new XmrToApiImpl(OkHttpHelper.getOkHttpClient(),
                             Helper.getXmrToBaseUrl());
                 }
             }

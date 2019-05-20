@@ -34,20 +34,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.m2049r.xmrwallet.OnBackPressedListener;
 import com.m2049r.xmrwallet.OnUriScannedListener;
 import com.m2049r.xmrwallet.R;
+import com.m2049r.xmrwallet.WalletActivity;
 import com.m2049r.xmrwallet.data.BarcodeData;
 import com.m2049r.xmrwallet.data.PendingTx;
 import com.m2049r.xmrwallet.data.TxData;
 import com.m2049r.xmrwallet.data.TxDataBtc;
+import com.m2049r.xmrwallet.data.UserNotes;
 import com.m2049r.xmrwallet.layout.SpendViewPager;
 import com.m2049r.xmrwallet.model.PendingTransaction;
 import com.m2049r.xmrwallet.util.Helper;
 import com.m2049r.xmrwallet.util.Notice;
-import com.m2049r.xmrwallet.util.UserNotes;
 import com.m2049r.xmrwallet.widget.DotBar;
 import com.m2049r.xmrwallet.widget.Toolbar;
 
@@ -70,6 +70,8 @@ public class SendFragment extends Fragment
         SharedPreferences getPrefs();
 
         long getTotalFunds();
+
+        boolean isStreetMode();
 
         void onPrepareSend(String tag, TxData data);
 
@@ -103,6 +105,14 @@ public class SendFragment extends Fragment
 
     static private int MAX_FALLBACK = Integer.MAX_VALUE;
 
+    public static SendFragment newInstance(String uri) {
+        SendFragment f = new SendFragment();
+        Bundle args = new Bundle();
+        args.putString(WalletActivity.REQUEST_URI, uri);
+        f.setArguments(args);
+        return f;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -110,18 +120,18 @@ public class SendFragment extends Fragment
         final View view = inflater.inflate(R.layout.fragment_send, container, false);
 
         llNavBar = view.findViewById(R.id.llNavBar);
-        bDone = (Button) view.findViewById(R.id.bDone);
+        bDone = view.findViewById(R.id.bDone);
 
-        dotBar = (DotBar) view.findViewById(R.id.dotBar);
-        bPrev = (Button) view.findViewById(R.id.bPrev);
-        bNext = (Button) view.findViewById(R.id.bNext);
+        dotBar = view.findViewById(R.id.dotBar);
+        bPrev = view.findViewById(R.id.bPrev);
+        bNext = view.findViewById(R.id.bNext);
         arrowPrev = getResources().getDrawable(R.drawable.ic_navigate_prev_white_24dp);
         arrowNext = getResources().getDrawable(R.drawable.ic_navigate_next_white_24dp);
 
-        ViewGroup llNotice = (ViewGroup) view.findViewById(R.id.llNotice);
+        ViewGroup llNotice = view.findViewById(R.id.llNotice);
         Notice.showAll(llNotice, ".*_send");
 
-        spendViewPager = (SpendViewPager) view.findViewById(R.id.pager);
+        spendViewPager = view.findViewById(R.id.pager);
         pagerAdapter = new SpendPagerAdapter(getChildFragmentManager());
         spendViewPager.setOffscreenPageLimit(pagerAdapter.getCount()); // load & keep all pages in cache
         spendViewPager.setAdapter(pagerAdapter);
@@ -181,10 +191,20 @@ public class SendFragment extends Fragment
 
         updatePosition(0);
 
-        etDummy = (EditText) view.findViewById(R.id.etDummy);
+        etDummy = view.findViewById(R.id.etDummy);
         etDummy.setRawInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         etDummy.requestFocus();
         Helper.hideKeyboard(getActivity());
+
+        Bundle args = getArguments();
+        if (args != null) {
+            String uri = args.getString(WalletActivity.REQUEST_URI);
+            Timber.d("URI: %s", uri);
+            if (uri != null) {
+                barcodeData = BarcodeData.fromQrCode(uri);
+                Timber.d("barcodeData: %s", barcodeData != null ? barcodeData.toString() : "null");
+            }
+        }
 
         return view;
     }

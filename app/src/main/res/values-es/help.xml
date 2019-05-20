@@ -2,7 +2,7 @@
 <resources>
     <string name="help_create_new"><![CDATA[
         <h1>Crear nuevo monedero</h1>
-        <p>¡En caso de que necesites una nueva dirección de Monero!</p>
+        <p>¡En caso de que necesites una nueva dirección de Pyrexcoin!</p>
         <p>Introduce un nombre único para tu monedero y una contraseña.
         La contraseña es utilizada para proteger los datos de tu monedero en el dispositivo.
         Utiliza una contraseña fuerte - incluso mejor si utilizas una frase.</p>
@@ -24,7 +24,7 @@
 
     <string name="help_create_seed"><![CDATA[
         <h1>Restaurar monedero con semilla</h1>
-        <p>¡Si ya tienes una dirección de Monero y quieres recuperar sus transacciones desde la
+        <p>¡Si ya tienes una dirección de Pyrexcoin y quieres recuperar sus transacciones desde la
         cadena de bloques!</p>
         <p>La contraseña es utilizada para proteger los datos de tu monedero en el dispositivo.
         Utiliza una contraseña fuerte - incluso mejor si utilizas una frase.</p>
@@ -41,7 +41,7 @@
         <p>Introduce un nombre único para tu monedero y una contraseña.
         La contraseña es utilizada para proteger los datos de tu monedero en el dispositivo.
         Utiliza una contraseña fuerte - incluso mejor si utilizas una frase.</p>
-        <p>Ingresa tu dirección de Monero en el campo \"Dirección Pública\" y completa
+        <p>Ingresa tu dirección de Pyrexcoin en el campo \"Dirección Pública\" y completa
         \"Clave de Vista\" y \"Clave de Gasto\".</p>
         <p>Si conoces el número de bloque de la primera transacción usada en esta dirección,
         introdúcelo en el campo \"Altura de Restauración\" - dejándolo en blanco se escaneará la
@@ -55,7 +55,7 @@
         <p>Introduce un nombre único para tu monedero y una contraseña.
         La contraseña es utilizada para proteger los datos de tu monedero en el dispositivo.
         Utiliza una contraseña fuerte - incluso mejor si utilizas una frase.</p>
-        <p>Ingresa tu dirección de Monero en el campo \"Dirección Pública\" y completa
+        <p>Ingresa tu dirección de Pyrexcoin en el campo \"Dirección Pública\" y completa
         \"Clave de Vista\".</p>
         <p>Si conoces el número de bloque de la primera transacción usada en esta dirección,
         introdúcelo en el campo \"Altura de Restauración\" - dejándolo en blanco se escaneará la
@@ -78,7 +78,7 @@
         Asegúrate de escribir esta contraseña. Si restablececes tu dispositivo o desinstalas esta
         aplicación, vas a necesitarla para acceder a tu monedero otra vez.<br/>
         <h3>CrAzYpass</h3>
-        Si la contraseña que se muestra consiste de 52 caracteres alfanuméricos en grupos de 4...
+        Si la contraseña que se muestra consiste de 52 caracteres alfanuméricos en grupos de 4&#8230;
         ¡felicitaciones!
 		Los archivos de tu monedero están asegurado con una clave de 256 bits, generada por tu
         propio dispositivo basándose en la contraseña que elegiste (al crear el monedero o luego
@@ -108,13 +108,13 @@
     <string name="help_list"><![CDATA[
         <h1>Lista de monederos</h1>
         <h2>Nodo</h2>
-        <p>Monerujo utiliza un nodo remoto para comunicarse con la red de Monero sin tener que
+        <p>Monerujo utiliza un nodo remoto para comunicarse con la red de Pyrexcoin sin tener que
         descargar y almacenar una copia completa de la cadena de bloques. Puedes encontrar una lista
         de nodos remotos populares o aprender como montar tu propio nodo remoto aquí https://moneroworld.com</p>
         <p>Monerujo viene con un nodo remoto ya preconfigurado. También recuerda los últimos cinco
         nodos utilizados.</p>
         <h2>Monederos</h2>
-        <p>Aquí puedes ver tus monederos. Están ubicados en el directorio <tt>monerujo</tt> del
+        <p>Aquí puedes ver tus monederos. Están ubicados en el directorio <tt>pyxwallet</tt> del
         almacenamiento interno de tu dispositivo. Puedes utilizar un explorador de archivos
         para verlos. Deberías hacer copias de seguridad de este directorio de forma regular en
         almacenamientos fuera del dispositivo por si tu dispositivo explota o es robado.
@@ -129,29 +129,11 @@
         <p>Permite cambiar el nombre de tu monedero. La copia de seguridad no será renombrada.</p>
         <h3>Copia de seguridad</h3>
         <p>Crea una copia de tu monedero en el directorio <tt>backups</tt> que se encuentra dentro
-        de <tt>monerujo</tt> sobreescribiendo cualquier copia previa existente.</p>
+        de <tt>pyxwallet</tt> sobreescribiendo cualquier copia previa existente.</p>
         <h3>Archivar</h3>
         <p>Crea una copia de seguridad y borra la cartera inmediatamente después. La copia
         permanecerá en el directorio <tt>backups</tt>. Si no necesitas más tus copias de seguridad
         deberás borrarlas con un explorador de archivos o una aplicacin de borrado seguro.</p>
-    ]]></string>
-
-    <string name="help_wallet"><![CDATA[
-        <h1>El monedero</h1>
-        <h2>Escaneado</h2>
-        Como a Monero le gusta mantener las cosas privadas, cada vez que abres una cartera de
-        Monerujo es necesario escanear la cadena de bloques para ver si nuevos moneroj han sido
-        enviados a tu dirección. Esto solo almacena en tu teléfono las transacciones que pertenecen a tu
-        monedero. Esto puede llevar un rato si hace tiempo que no sincronizas.
-        <h2>Saldo</h2>
-        <p><b>¡Ayuda! ¡El saldo de mi monedero ha desaparecido o aparece sin confirmar!</b><br/>
-        ¡No entres en pánico! Cuando envias fondos a tu monedero, parte de tu saldo se mostrará
-        temporalmente como sin confirmar.
-        Esto es debido a como funcionan las transacciones y su cambio en Monero. Todo está bien.
-        Puedes leer más al respecto en https://getmonero.org/resources/moneropedia/change.html
-        <h2>Lista de transacciones</h2>
-        <p>Es una lista con las transacciones del monedero. Ten en cuenta que en monederos de solo vista, únicamente se
-        mostrarán las transacciones entrantes y no las salientes, por lo tanto la suma no es indicativa de los fondos disponibles.</p>
     ]]></string>
 
     <string name="help_tx_details"><![CDATA[
@@ -159,17 +141,17 @@
         <h2>Destinatario</h2>
         Esta es la dirección pública del monedero al que has enviado moneroj
         <h2>ID de Pago</h2>
-        Al ser Monero ofuscado por naturaleza, puedes usar un ID de Pago para identificar un envío de Monero entre
+        Al ser Pyrexcoin ofuscado por naturaleza, puedes usar un ID de Pago para identificar un envío de Pyrexcoin entre
         dos partes. Esto es completamente opcional y privado. Por ejemplo, esto permitiría que un
         negocio pueda asociar inequívocamente tu transacción con un producto que has comprado.
         <h2>ID de Transacción</h2>
         Este es un identificador de tu transacción que puede ser utilizado para ubicar tu transacción
-        ofuscada en la cadena de bloques de Monero usando un explorador como <a href="https://xmrchain.net/">https://xmrchain.net/</a>
+        ofuscada en la cadena de bloques de Pyrexcoin usando un explorador como <a href="https://xmrchain.net/">https://xmrchain.net/</a>
         <h2>Clave de transacción</h2>
         Esta es la clave privada de tu transacción, mantenla segura ya que revelarla a un tercero
         desvela que firma en un anillo de transacciones es la tuya, por tanto haciendo tus transacciones transparentes.
         <h2>Bloque</h2>
-        Este es el bloque de la cadena de Monero en el que tu transacción fue incluída.
+        Este es el bloque de la cadena de Pyrexcoin en el que tu transacción fue incluída.
     ]]></string>
 
     <string name="help_send"><![CDATA[
@@ -178,89 +160,171 @@
         <p>Esta es la dirección pública del monedero al que vas a enviar moneroj. Puedes copiarla
         desde tu portapapeles, escanear un código QR o introducirla manualmente. Asegúrate de
         comprobarla varias veces para confirmar que no estás enviando moneroj a la dirección equivocada.</p>
+        <p>In addition to using an PYX address, you can also use
+        <ul>
+            <li>an OpenAlias for PYX or BTC</li>
+            <li>a BTC address</li>
+            <li>a bitcoin: URI (including BIP70 like bitpay)</li>
+        </u>
+        Please note, that sending BTC is processed through the PYX.TO service (see https://xmr.to
+        for details). See the section on sending BTC below.</p>
         <h2>ID de Pago</h2>
-        Al ser Monero ofuscado por naturaleza, puedes usar un ID de Pago para identificar un envío de Monero entre
+        Al ser Pyrexcoin ofuscado por naturaleza, puedes usar un ID de Pago para identificar un envío de Pyrexcoin entre
         dos partes. Esto es completamente opcional y privado. Por ejemplo, esto permitiría que un
         negocio pueda asociar inequívocamente tu transacción con un producto que has comprado.</p>
-        <h2>Tamaño del anillo</h2>
-        <p>Hay varios tamaños de anillo (ring size) para elegir en Monerujo. Si eres un
-        usuario principiante te recomendamos que simplemente utilices un tamaño de anillo de 7.
-        Aumentar el tamaño de anillo por encima de 7 incrementa el número de firmantes en una firma
-        de anillo, lo cual teóricamente proporciona una mayor negación plausible. Pero configurar
-        tamaños de anillo altos también puede provocar que tu transacción quede fuera de la
-        cadena de bloques.</p>
-        <h2>Prioridad</h2>
-        <p>Este ajuste determina la velocidad a la que tu transacción será incluída en la cadena
-        de bloques. Una configuración de alta prioridad tendrá una mayor
-        comisión de transacción, y lo opuesto en el caso de una prioridad baja. Por favor,
-        ten en cuenta que si configuras tu transacción con una baja prioridad puede llevar horas
-        hasta que sea incluída en la cadena de bloques. La prioridad por defecto es \"Media\".</p>
         <h1>Enviar BTC</h1>
-        <h2>XMR.TO</h2>
-        <p>XMR.TO es un servicio de terceros que actúa como casa de cambio de Monero a Bitcoin.
-        Usamos la API de XMR.TO para integrar pagos de Bitcoin dentro de Monerujo. Por favor revisa
+        <h2>PYX.TO</h2>
+        <p>PYX.TO es un servicio de terceros que actúa como casa de cambio de Pyrexcoin a Bitcoin.
+        Usamos la API de PYX.TO para integrar pagos de Bitcoin dentro de Monerujo. Por favor revisa
         https://xmr.to y decide por ti mismo si es un servicio que quieres usar. El equipo de Monerujo
-        no está asociado con XMR.TO y no puede ayudarte con su servicio.</p>
-        <h2>Tipo de cambio XMR.TO<h2>
-        <p>En la pantalla de \"Monto\" se te mostrará las condiciones actuales del servicio XMR.TO.
+        no está asociado con PYX.TO y no puede ayudarte con su servicio.</p>
+        <h2>Tipo de cambio PYX.TO<h2>
+        <p>En la pantalla de \"Monto\" se te mostrará las condiciones actuales del servicio PYX.TO.
         Estas incluyen el tipo de cambio del momento así como también los límites mínimo y máximo de BTC.
         Toma nota de que el tipo de cambio aún no está garantizado en esa instancia. También verás el
         monto tope hasta el cual la transacción será ejecutada instantáneamente sin esperar a
-        confirmaciones de XMR (revisa el FAQ de XMR.TO para más detalles). Por favor observa que
-        XMR.TO no cobra comisiones extra - increíble, verdad?</p>
-        <h2>Orden XMR.TO<h2>
-        <p> En la pantalla \"Confirmar\" verás la orden XMR.TO final. Esta orden es válida por un
+        confirmaciones de PYX (revisa el FAQ de PYX.TO para más detalles). Por favor observa que
+        PYX.TO no cobra comisiones extra - increíble, verdad?</p>
+        <h2>Orden PYX.TO<h2>
+        <p> En la pantalla \"Confirmar\" verás la orden PYX.TO final. Esta orden es válida por un
         tiempo limitado - notarás una cuenta atrás en el botón de \"Gastar\". El tipo de cambio a
         esta altura puede ser distinto al aproximado que era mostrado en pantallas anteriores.</p>
-        <h2>Clave secreta XMR.TO<h2>
-        <p>Dado que Monerujo sólo administra la parte en Monero de tu transacción, puedes usar tu
-        clave secreta XMR.TO para rastrear la parte en Bitcoin de tu orden en la página de XMR.TO.</p>
+        <h2>Clave secreta PYX.TO<h2>
+        <p>Dado que Monerujo sólo administra la parte en Pyrexcoin de tu transacción, puedes usar tu
+        clave secreta PYX.TO para rastrear la parte en Bitcoin de tu orden en la página de PYX.TO.</p>
         <p>Por favor ten en cuenta que esta clave secreta sólo es válida por 24 horas a partir de
         iniciada la transacción!</p>
-        <h2>Cuenta atrás XMR.TO!</h2>
+        <h2>Cuenta atrás PYX.TO!</h2>
         <p>Una vez que la cuenta atrás alcanza el cero, necesitarás pedir una nueva cotización de
-        parte de XMR.TO, esto se logra dando un paso atrás y luego volviendo a la pantalla de
+        parte de PYX.TO, esto se logra dando un paso atrás y luego volviendo a la pantalla de
         \"Confirmar\".</p>
     ]]></string>
 
     <string name="help_xmrto"><![CDATA[
         <h1>Enviar BTC</h1>
-        <h2>XMR.TO</h2>
-        <p>XMR.TO es un servicio de terceros que actúa como casa de cambio de Monero a Bitcoin.
-        Usamos la API de XMR.TO para integrar pagos de Bitcoin dentro de Monerujo. Por favor revisa
+        <h2>PYX.TO</h2>
+        <p>PYX.TO es un servicio de terceros que actúa como casa de cambio de Pyrexcoin a Bitcoin.
+        Usamos la API de PYX.TO para integrar pagos de Bitcoin dentro de Monerujo. Por favor revisa
         https://xmr.to y decide por ti mismo si es un servicio que quieres usar. El equipo de Monerujo
-        no está asociado con XMR.TO y no puede ayudarte con su servicio.</p>
-        <h2>Tipo de cambio XMR.TO<h2>
-        <p>En la pantalla de \"Monto\" se te mostrará las condiciones actuales del servicio XMR.TO.
+        no está asociado con PYX.TO y no puede ayudarte con su servicio.</p>
+        <h2>Tipo de cambio PYX.TO<h2>
+        <p>En la pantalla de \"Monto\" se te mostrará las condiciones actuales del servicio PYX.TO.
         Estas incluyen el tipo de cambio del momento así como también los límites mínimo y máximo de BTC.
         Toma nota de que el tipo de cambio aún no está garantizado en esa instancia. También verás el
         monto tope hasta el cual la transacción será ejecutada instantáneamente sin esperar a
-        confirmaciones de XMR (revisa el FAQ de XMR.TO para más detalles). Por favor observa que
-        XMR.TO no cobra comisiones extra - increíble, verdad?</p>
-        <h2>Orden XMR.TO<h2>
-        <p> En la pantalla \"Confirmar\" verás la orden XMR.TO final. Esta orden es válida por un
+        confirmaciones de PYX (revisa el FAQ de PYX.TO para más detalles). Por favor observa que
+        PYX.TO no cobra comisiones extra - increíble, verdad?</p>
+        <h2>Orden PYX.TO<h2>
+        <p> En la pantalla \"Confirmar\" verás la orden PYX.TO final. Esta orden es válida por un
         tiempo limitado - notarás una cuenta atrás en el botón de \"Gastar\". El tipo de cambio a
         esta altura puede ser distinto al aproximado que era mostrado en pantallas anteriores.</p>
-        <h2>Clave secreta XMR.TO<h2>
-        <p>Dado que Monerujo sólo administra la parte en Monero de tu transacción, puedes usar tu
-        clave secreta XMR.TO para rastrear la parte en Bitcoin de tu orden en la página de XMR.TO.</p>
+        <h2>Clave secreta PYX.TO<h2>
+        <p>Dado que Monerujo sólo administra la parte en Pyrexcoin de tu transacción, puedes usar tu
+        clave secreta PYX.TO para rastrear la parte en Bitcoin de tu orden en la página de PYX.TO.</p>
         <p>Por favor ten en cuenta que esta clave secreta sólo es válida por 24 horas a partir de
         iniciada la transacción!</p>
-        <h2>Cuenta atrás XMR.TO!</h2>
+        <h2>Cuenta atrás PYX.TO!</h2>
         <p>Una vez que la cuenta atrás alcanza el cero, necesitarás pedir una nueva cotización de
-        parte de XMR.TO, esto se logra dando un paso atrás y luego volviendo a la pantalla de
+        parte de PYX.TO, esto se logra dando un paso atrás y luego volviendo a la pantalla de
         \"Confirmar\".</p>
     ]]></string>
 
     <string name="help_create_ledger"><![CDATA[
-        <h1>Create Wallet - Ledger</h1>
-        <p>You want to recover your wallet from your Ledger Nano S device.</p>
-        <p>Your secret keys never leave the Ledger device, so you need it plugged in every
-        time you want to access your wallet.</p>
-        <p>Enter a unique wallet name and password. The password is used for securing your wallet data on the Android
-        device. Use a strong password - even better use a passphrase.</p>
-        <p>Enter the block number of the first transaction used for this address in the
-        field \"Restore Height\". You can also use a date in the format YYYY-MM-DD. If you are not sure,
-        enter an approximate date/blockheight <em>before</em> you first used this wallet address.</p>
+        <h1>Crear Monedero - Ledger</h1>
+        <p>Deseas recuperar tu monedero desde tu dispositivo Ledger Nano S.</p>
+        <p>Tus claves secretas nunca dejan el dispositivo Ledger, así que lo necesitas conectado cada
+        vez que deseas acceder a tu monedero.</p>
+        <p>Ingresa un nombre de monedero y contraseña únicos. La contraseña es usada para asegurar tu información del monedero en el dispositivo
+        Android. Usa una contraseña fuerte - o mejor aún, usa una frase de contraseña.</p>
+        <p>Ingresa el número del bloque de la primera transacción usada para esta dirección en el
+        campo \"Altura de restaurado\". También puedes usar una fecha en formato AAAA-MM-DD. Si no estás seguro,
+        ingresa una fecha o altura del bloque aproximada <em>anterior</em> a la primera vez que usaste esta dirección del monedero.</p>
     ]]></string>
+
+    <string name="help_wallet"><![CDATA[
+        <h1>El monedero</h1>
+        <h2>Modo Público</h2>
+        <p>El Modo Público puede ser habilitado/deshabilitado en el menú o en el icono de Gunther\'s. En este modo, tu
+        balance no se muestra en ninguna pantalla para que puedas usar de manera segura tu monedero en la calle, un pub u
+        otro lugar público. Transacciones anteriores también se ocultan. Nuevas transacciones serán mostradas, para
+        que puedas ver que has enviado/recibido Moneroj.</p>
+        <h2>Escaneado</h2>
+        Como a Pyrexcoin le gusta mantener las cosas privadas, cada vez que abres una cartera de
+        Monerujo es necesario escanear la cadena de bloques para ver si nuevos moneroj han sido
+        enviados a tu dirección. Esto solo almacena en tu teléfono las transacciones que pertenecen a tu
+        monedero. Esto puede llevar un rato si hace tiempo que no sincronizas.
+        <h2>Saldo</h2>
+        <p><b>¡Ayuda! ¡El saldo de mi monedero ha desaparecido o aparece sin confirmar!</b><br/>
+        ¡No entres en pánico! Cuando envias fondos a tu monedero, parte de tu saldo se mostrará
+        temporalmente como sin confirmar.
+        Esto es debido a como funcionan las transacciones y su cambio en Pyrexcoin. Todo está bien.
+        Puedes leer más al respecto en https://getmonero.org/resources/moneropedia/change.html
+        <h2>Lista de transacciones</h2>
+        <p>Es una lista con las transacciones del monedero. Ten en cuenta que en monederos de solo vista, únicamente se
+        mostrarán las transacciones entrantes y no las salientes, por lo tanto la suma no es indicativa de los fondos disponibles.</p>
+    ]]></string>
+
+    <string name="help_node"><![CDATA[
+        <h1>Nodos</h1>
+        <h2>TL;DR</h2>
+        <p>Refresca la lista de nodos al mostrar los marcadores de nodos para permitir a Monerujo
+        elegir el mejor para ti.</p>
+        <h2>¿Qué es un Nodo?h2>
+        <p>Monerujo usa un Nodo Remoto (algunas veces también llamado Daemon) para comunicarse con
+        la red de Pyrexcoin sin tener que descargar y almacenar una copia de la
+        cadena de bloques completa.<p>
+        <h2>Lista de Nodos</h2>
+        <p>Si la lista está vacía, puedes agregar nuevos nodos manualmente o dejar que Monerujo
+        escanee la red por ti. O ambos.</p>
+        <p>La lista de nodos muestra todos los nodos actualmente conocidos. Adicionalmente, la marca de tiempo
+        del último bloque conocido para cada nodo se muestra bajo el nombre del nodo. Un icono
+        representando el comportamiento de respuesta del nodo
+        (el cual indica el nivel de conectividad esperado)
+        es mostrado seguido de cada nodo.</p>
+        <p>Cualquier nodo en la lista puede ser marcado para un posterior uso.
+        Nodos que no sean marcados serán olvidados.<p>
+        <p>Monerujo elegirá el nodo marcado óptimo cada vez que lo uses.
+        Esto lo hace revisando la altura del bloque (¿qué tan al día
+        está el nodo?) así como el comportamiento de respuesta (¿qué tan rápido responde el nodo a solicitudes?).</p>
+        <p>La lista se ordena por estas características, por lo tanto el primer nodo en la lista sería el que Monerujo
+        elegiría en ese momento. El final de la lista mostraría nodos muy lentos o no disponibles.</p>
+        <h2>Agregar un Nodo</h2>
+        <p>Presionando en el botón &quot;Agregar Nodo&quot; en la parte inferior, se te pedirá que
+        ingreses los detalles del nodo en el siguiente cuadro de diálogo.
+        La &quot;Dirección&quot; es el nombre del host o dirección IP del nodo - esta es la única
+        entrada obligatoria.
+        Ingresa el &quot;Puerto&quot; si el nodo se ejecuta en un puerto que no es por defecto (e.g. 18089).
+        Puedes también nombrar el nodo opcionalmente, para que puedas identificarlo después fácilmente.
+        Algunos nodos requieren credenciales para usarlos. Ingresa el nombre de usuario provisto &amp;
+        contraseña en los campos apropiados. Ahora puedes &quot;Verificar&quot; estos ajustes.
+        Los &quot;Resultados de la Prueba&quot; mostrarán la altura del bloque, tiempo de respuesta y dirección IP real usados.
+        El resultado puede ser también un error - usualmente porque el nombre de host provisto no
+        es alcanzable en una sensible cantidad de tiempo o las credenciales son incorrectas.
+        O la combinación nombre de host/puerto no indican a un nodo de Pyrexcoin real.
+        Una vez que la prueba sea exitosa (sin error) - estás listo para presionar &quot;OK&quot; para guardar &amp;
+        como marcador este nodo.</p>
+        <h2>Escanear por Nodos</h2>
+        <p>Adicionalmente, puedes escanear la red por nodos. Monerujo empezará
+        escaneando la red por Nodos Remotos con puerto 18089. Comienza preguntando tus
+        nodos marcados por otros compañeros en la red P2P de Pyrexcoin y después continúa
+        preguntando por nodos a ellos por sus compañeros, y así. Si no tienes nodos marcados
+        (o no nos comunican sobre sus compañeros),
+        Monerujo irá directo a los nodos semilla de Pyrexcoin codificados en Pyrexcoin. El
+        escaneo parará cuando encuentre 10 nodos remotos en total.</p>
+    ]]></string>
+
+    <!-- Note for translators: new/changed text also in help_send -->
+
+    <string name="help_uri"><![CDATA[
+        <h1>Using a payment link</h1>
+        <p>You have started pyxwallet with a payment link. In order to send funds, please do the following:</p>
+        <p>
+        1. Open the wallet you want to spend from<br>
+        2. Wait until the wallet is synced &amp; the "Give" button appears<br>
+        3. Touch the "Give" button
+        </p>
+        <p>The payment details will be filled in. Check them and proceed like for any other transaction.</p>
+    ]]></string>
+
+    <string name="help_ok">Got it!</string> <!-- Note: "Got it" as in "I understand this" -->
 </resources>

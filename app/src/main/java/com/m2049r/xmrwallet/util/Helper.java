@@ -36,6 +36,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
 import android.system.ErrnoException;
@@ -63,6 +64,7 @@ import com.m2049r.xmrwallet.service.exchange.api.ExchangeApi;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
@@ -77,13 +79,15 @@ import timber.log.Timber;
 
 public class Helper {
     static private final String FLAVOR_SUFFIX =
-            (BuildConfig.FLAVOR.equals("prod") ? "" : "." + BuildConfig.FLAVOR)
+            (BuildConfig.FLAVOR.startsWith("prod") ? "" : "." + BuildConfig.FLAVOR)
                     + (BuildConfig.DEBUG ? "-debug" : "");
+
+    static public final String NOCRAZYPASS_FLAGFILE = ".nocrazypass";
 
     static public final String CRYPTO = "PYX";
 
-    static private final String WALLET_DIR = "monerujo" + FLAVOR_SUFFIX;
-    static private final String HOME_DIR = "monero" + FLAVOR_SUFFIX;
+    static private final String WALLET_DIR = "pyxwallet" + FLAVOR_SUFFIX;
+    static private final String HOME_DIR = "Pyrexcoin" + FLAVOR_SUFFIX;
 
     static public int DISPLAY_DIGITS_INFO = 5;
 
@@ -183,28 +187,23 @@ public class Helper {
         act.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
+    static public BigDecimal getDecimalAmount(long amount) {
+        return new BigDecimal(amount).scaleByPowerOfTen(-12);
+    }
+
     static public String getDisplayAmount(long amount) {
         return getDisplayAmount(amount, 12);
     }
 
     static public String getDisplayAmount(long amount, int maxDecimals) {
-        return getDisplayAmount(Wallet.getDisplayAmount(amount), maxDecimals);
-    }
-
-    // amountString must have '.' as decimal point
-    private static String getDisplayAmount(String amountString, int maxDecimals) {
-        int lastZero = 0;
-        int decimal = 0;
-        for (int i = amountString.length() - 1; i >= 0; i--) {
-            if ((lastZero == 0) && (amountString.charAt(i) != '0')) lastZero = i + 1;
-            // TODO i18n
-            if (amountString.charAt(i) == '.') {
-                decimal = i + 1;
-                break;
-            }
-        }
-        int cutoff = Math.min(Math.max(lastZero, decimal + 2), decimal + maxDecimals);
-        return amountString.substring(0, cutoff);
+        // a Java bug does not strip zeros properly if the value is 0
+        if (amount == 0) return "0.00";
+        BigDecimal d = getDecimalAmount(amount)
+                .setScale(maxDecimals, BigDecimal.ROUND_HALF_UP)
+                .stripTrailingZeros();
+        if (d.scale() < 2)
+            d = d.setScale(2, BigDecimal.ROUND_UNNECESSARY);
+        return d.toPlainString();
     }
 
     static public String getFormattedAmount(double amount, boolean isXmr) {
@@ -346,6 +345,11 @@ public class Helper {
             WalletManager.setLogLevel(level);
     }
 
+    static public boolean useCrazyPass(Context context) {
+        File flagFile = new File(getWalletRoot(context), NOCRAZYPASS_FLAGFILE);
+        return !flagFile.exists();
+    }
+
     // try to figure out what the real wallet password is given the user password
     // which could be the actual wallet password or a (maybe malformed) CrAzYpass
     // or the password used to derive the CrAzYpass for the wallet
@@ -397,10 +401,10 @@ public class Helper {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setView(promptsView);
 
-        final TextInputLayout etPassword = (TextInputLayout) promptsView.findViewById(R.id.etPassword);
+        final TextInputLayout etPassword = promptsView.findViewById(R.id.etPassword);
         etPassword.setHint(context.getString(R.string.prompt_password, wallet));
 
-        final TextView tvOpenPrompt = (TextView) promptsView.findViewById(R.id.tvOpenPrompt);
+        final TextView tvOpenPrompt = promptsView.findViewById(R.id.tvOpenPrompt);
         final Drawable icFingerprint = context.getDrawable(R.drawable.ic_fingerprint);
         final Drawable icError = context.getDrawable(R.drawable.ic_error_red_36dp);
         final Drawable icInfo = context.getDrawable(R.drawable.ic_info_green_36dp);
@@ -458,7 +462,6 @@ public class Helper {
                         etPassword.setError(context.getString(R.string.bad_password));
                     }
                 }
-
                 loginTask = null;
             }
         }
@@ -549,6 +552,8 @@ public class Helper {
                     tvOpenPrompt.setText(context.getText(R.string.prompt_fingerprint_auth));
                     tvOpenPrompt.setVisibility(View.VISIBLE);
                     FingerprintHelper.authenticate(context, cancelSignal, fingerprintAuthCallback);
+                } else {
+                    etPassword.requestFocus();
                 }
                 Button button = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
                 button.setOnClickListener(new View.OnClickListener() {
@@ -580,6 +585,11 @@ public class Helper {
             }
         });
 
+        // set FLAG_SECURE to prevent screenshots in Release Mode
+        if (!(BuildConfig.DEBUG && BuildConfig.FLAVOR_type.equals("alpha"))) {
+            openDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        }
+
         Helper.showKeyboard(openDialog);
         openDialog.show();
     }
@@ -599,6 +609,21 @@ public class Helper {
     }
 
     static public ExchangeApi getExchangeApi() {
-        return new com.m2049r.xmrwallet.service.exchange.coinmarketcap.ExchangeApiImpl(OkHttpClientSingleton.getOkHttpClient());
+        return new com.m2049r.xmrwallet.service.exchange.coinmarketcap.ExchangeApiImpl(OkHttpHelper.getOkHttpClient());
+    }
+
+    public interface Action {
+        boolean run();
+    }
+
+    static public boolean runWithNetwork(Action action) {
+        StrictMode.ThreadPolicy currentPolicy = StrictMode.getThreadPolicy();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitNetwork().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            return action.run();
+        } finally {
+            StrictMode.setThreadPolicy(currentPolicy);
+        }
     }
 }

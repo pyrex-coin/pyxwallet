@@ -17,15 +17,15 @@
 package com.m2049r.xmrwallet.xmrto.network;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.VisibleForTesting;
 
-import com.m2049r.xmrwallet.xmrto.api.XmrToCallback;
+import com.m2049r.xmrwallet.util.OkHttpHelper;
 import com.m2049r.xmrwallet.xmrto.XmrToError;
 import com.m2049r.xmrwallet.xmrto.XmrToException;
 import com.m2049r.xmrwallet.xmrto.api.CreateOrder;
 import com.m2049r.xmrwallet.xmrto.api.QueryOrderParameters;
 import com.m2049r.xmrwallet.xmrto.api.QueryOrderStatus;
 import com.m2049r.xmrwallet.xmrto.api.XmrToApi;
+import com.m2049r.xmrwallet.xmrto.api.XmrToCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,6 +62,12 @@ public class XmrToApiImpl implements XmrToApi, XmrToApiCall {
     public void createOrder(final double amount, @NonNull final String address,
                             @NonNull final XmrToCallback<CreateOrder> callback) {
         CreateOrderImpl.call(this, amount, address, callback);
+    }
+
+    @Override
+    public void createOrder(@NonNull final String url,
+                            @NonNull final XmrToCallback<CreateOrder> callback) {
+        CreateOrderImpl.call(this, url, callback);
     }
 
     @Override
@@ -113,6 +119,7 @@ public class XmrToApiImpl implements XmrToApi, XmrToApiCall {
                 } else {
                     try {
                         final JSONObject json = new JSONObject(response.body().string());
+                        Timber.d(json.toString(2));
                         final XmrToError error = new XmrToError(json);
                         Timber.e("xmr.to says %d/%s", response.code(), error.toString());
                         callback.onError(new XmrToException(response.code(), error));
@@ -128,16 +135,9 @@ public class XmrToApiImpl implements XmrToApi, XmrToApiCall {
         if (request != null) {
             final RequestBody body = RequestBody.create(
                     MediaType.parse("application/json"), request.toString());
-
-            return new Request.Builder()
-                    .url(url)
-                    .post(body)
-                    .build();
+            return OkHttpHelper.getPostRequest(url, body);
         } else {
-            return new Request.Builder()
-                    .url(url)
-                    .get()
-                    .build();
+            return OkHttpHelper.getGetRequest(url);
         }
     }
 }

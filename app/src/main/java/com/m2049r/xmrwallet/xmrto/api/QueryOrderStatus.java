@@ -22,7 +22,7 @@ public interface QueryOrderStatus {
     enum State {
         UNDEF,
         TO_BE_CREATED, // order creation pending
-        UNPAID, // waiting for Monero payment by user
+        UNPAID, // waiting for Pyrexcoin payment by user
         UNDERPAID, // order partially paid
         PAID_UNCONFIRMED, // order paid, waiting for enough confirmations
         PAID, // order paid and sufficiently confirmed
