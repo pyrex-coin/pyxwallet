@@ -17,7 +17,7 @@ fi
 
 args="--build-type=minimal link=static runtime-link=static --with-chrono \
 --with-date_time --with-filesystem --with-program_options --with-regex \
---with-serialization --with-system --with-thread \
+--with-serialization --with-system --with-thread --with-locale \
 --includedir=$TARGET_DIR/include \
 toolset=clang threading=multi threadapi=pthread target-os=android"
 
