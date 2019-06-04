@@ -52,7 +52,7 @@ public class Notice {
                             R.string.help_node,
                             1)
             );
-            notices.add(
+            /*notices.add(
                     new Notice(NOTICE_SHOW_XMRTO_ENABLED_SEND,
                             R.string.info_xmrto_enabled,
                             R.string.help_xmrto,
@@ -69,7 +69,7 @@ public class Notice {
                             R.string.info_ledger_enabled,
                             R.string.help_create_ledger,
                             1)
-            );*/
+            );
         }
     }
 

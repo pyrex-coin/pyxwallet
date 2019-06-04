@@ -178,7 +178,7 @@ public class SendAddressWizardFragment extends SendWizardFragment {
                     llPaymentId.setVisibility(View.INVISIBLE);
                     tvPaymentIdIntegrated.setVisibility(View.VISIBLE);
                     llXmrTo.setVisibility(View.INVISIBLE);
-                    sendListener.setMode(SendFragment.Mode.XMR);
+                    sendListener.setMode(SendFragment.Mode.PYX);
                 } else if (isBitcoinAddress() || (resolvedPP != null)) {
                     Timber.d("isBitcoinAddress");
                     setBtcMode();
