@@ -260,9 +260,9 @@ public class WalletActivity extends BaseActivity implements WalletFragment.Liste
             case R.id.action_info:
                 onWalletDetails();
                 return true;
-            //case R.id.action_credits:
-                //CreditsFragment.display(getSupportFragmentManager());
-                //return true;
+            case R.id.action_credits:
+                CreditsFragment.display(getSupportFragmentManager());
+                return true;
             case R.id.action_share:
                 onShareTxInfo();
                 return true;

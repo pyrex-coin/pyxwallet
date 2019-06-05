@@ -138,7 +138,7 @@ public class Toolbar extends android.support.v7.widget.Toolbar {
             case BUTTON_CREDITS:
                 Timber.d("BUTTON_CREDITS");
                 bCredits.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_favorite_white_24dp, 0, 0, 0);
-                bCredits.setText(R.string.label_credits);
+                //bCredits.setText(R.string.label_credits);
                 bCredits.setVisibility(View.VISIBLE);
                 break;
             case BUTTON_CANCEL:
